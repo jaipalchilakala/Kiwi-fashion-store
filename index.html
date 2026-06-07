@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaipal Fashion Store</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f5f5f5;
+}
+
+header{
+    background:#ff4d94;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    width:250px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#ff4d94;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.social{
+    text-align:center;
+    margin:20px;
+}
+
+.social a{
+    margin:10px;
+    text-decoration:none;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Jaipal Fashion Store</h1>
+<p>Women's & Girls Fashion Collection</p>
+</header>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/250x300" alt="Dress">
+<div class="card-content">
+<h3>Women's Floral Dress</h3>
+<p>₹799</p>
+<button onclick="orderProduct('Women Floral Dress - ₹799')">
+Order on WhatsApp
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/250x300" alt="Kids Dress">
+<div class="card-content">
+<h3>Girls Party Wear</h3>
+<p>₹599</p>
+<button onclick="orderProduct('Girls Party Wear - ₹599')">
+Order on WhatsApp
+</button>
+</div>
+</div>
+
+</div>
+
+<div class="social">
+<a href="https://instagram.com/chjaipalreddy" target="_blank">
+📸 Instagram
+</a>
+</div>
+
+<script>
+function orderProduct(product){
+
+let phone="7702353593";
+
+let message=
+"Hello, I would like to order: " + product;
+
+let whatsappURL=
+"https://wa.me/" +
+phone +
+"?text=" +
+encodeURIComponent(message);
+
+window.open(whatsappURL,'_blank');
+}
+</script>
+
+</body>
+</html>
