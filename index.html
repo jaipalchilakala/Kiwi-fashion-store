@@ -11,7 +11,7 @@
 
     <style>
         :root {
-            --primary: #be123c; /* Elegant Deep Rose Burgundy */
+            --primary: #be123c; 
             --primary-accent: #ffe4e6;
             --bg-light: #fafafb;
             --text-main: #0f172a;
@@ -81,7 +81,7 @@
             text-transform: uppercase;
         }
 
-        /* --- Sticky Navigation Blur Bar --- */
+        /* --- Sticky Navigation --- */
         nav {
             position: sticky;
             top: 0;
@@ -120,21 +120,10 @@
             transform: translateX(-50%);
         }
 
-        nav a:hover::after, nav a.nav-active::after {
-            width: 100%;
-        }
+        nav a:hover::after, nav a.nav-active::after { width: 100%; }
+        nav a:hover, nav a.nav-active { color: var(--primary); }
 
-        nav a:hover, nav a.nav-active {
-            color: var(--primary);
-        }
-
-        /* Cart Badge Counter Indicator */
-        .cart-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
+        .cart-nav-link { display: flex; align-items: center; gap: 6px; }
         .cart-badge {
             background: var(--primary);
             color: white;
@@ -142,8 +131,6 @@
             font-weight: 700;
             padding: 2px 7px;
             border-radius: 20px;
-            display: inline-block;
-            transition: transform 0.2s ease;
         }
 
         .container {
@@ -159,7 +146,6 @@
             font-weight: 600;
             margin: 60px 0 35px 0;
             color: #1e293b;
-            position: relative;
         }
 
         .section-title::after {
@@ -169,10 +155,9 @@
             height: 2px;
             background: var(--primary);
             margin: 10px auto 0 auto;
-            border-radius: 2px;
         }
 
-        /* --- Dynamic Hidden Merchant Workspace Layout --- */
+        /* --- Merchant Workspace --- */
         .upload-section {
             display: none; 
             background: #ffffff;
@@ -182,24 +167,27 @@
             margin: 40px auto;
             max-width: 800px;
             box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
-            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
         }
 
-        .upload-section h3 {
-            margin-bottom: 24px;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #0f172a;
-            border-bottom: 1px solid #f1f5f9;
-            padding-bottom: 12px;
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+        .form-group input, .form-group select {
+            padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;
         }
 
-        /* --- High Luxury Home Portal Entry Categories Display --- */
+        .btn-submit {
+            background: #0f172a; color: white; padding: 14px; border-radius: 8px;
+            font-weight: 600; cursor: pointer; width: 100%; border: none;
+        }
+
+        /* --- Entry Categories --- */
         .categories {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -217,203 +205,40 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             border: 1px solid #f1f5f9;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px solid transparent;
-            border-radius: 24px;
-            transition: all 0.4s ease;
         }
 
         .category:hover {
             transform: translateY(-8px);
             box-shadow: var(--hover-shadow);
-            background: linear-gradient(180deg, #ffffff 0%, #fffbfb 100%);
         }
 
-        .category:hover::before {
-            border-color: rgba(190, 18, 60, 0.2);
-        }
-
-        .category-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .category:hover .category-icon {
-            transform: scale(1.15) rotate(5deg);
-        }
-
-        .category h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #0f172a;
-            letter-spacing: -0.02em;
-        }
-
-        .category p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 24px;
-            font-weight: 400;
-        }
-
+        .category-icon { font-size: 3rem; margin-bottom: 20px; display: inline-block; }
+        .category h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 12px; }
+        .category p { color: var(--text-muted); font-size: 1rem; margin-bottom: 24px; }
         .category-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--primary);
-            background: #fff1f2;
-            padding: 8px 20px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
+            font-size: 0.9rem; font-weight: 600; color: var(--primary);
+            background: #fff1f2; padding: 8px 20px; border-radius: 30px;
         }
 
-        .category:hover .category-badge {
-            background: var(--primary);
-            color: white;
-        }
+        /* --- Product Grid --- */
+        .sub-tabs { display: flex; justify-content: center; gap: 14px; margin-bottom: 45px; flex-wrap: wrap; }
+        .tab { padding: 12px 28px; background: white; border: 1px solid #e2e8f0; border-radius: 40px; font-weight: 600; cursor: pointer; }
+        .tab.active { background: #0f172a; color: white; border-color: #0f172a; }
 
-        /* --- Premium Sub Category Tabs --- */
-        .sub-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            margin-bottom: 45px;
-            flex-wrap: wrap;
-        }
-
-        .tab {
-            padding: 12px 28px;
-            background: white;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
-        }
-
-        .tab:hover {
-            border-color: #cbd5e1;
-            color: var(--text-main);
-            transform: translateY(-1px);
-        }
-
-        .tab.active {
-            background: #0f172a;
-            color: white;
-            border-color: #0f172a;
-            box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.2);
-        }
-
-        /* --- Premium Product Grid Design Layout --- */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 35px;
-            margin-bottom: 80px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid #f1f5f9;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            background: #f8fafc;
-            padding-top: 130%; /* Balanced vertical product framing style */
-        }
-
-        .card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card:hover img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-content h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #1e293b;
-            line-height: 1.4;
-        }
-
-        .price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 20px;
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-        }
-
+        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; margin-bottom: 80px; }
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--card-shadow); display: flex; flex-direction: column; border: 1px solid #f1f5f9; }
+        .image-container { position: relative; padding-top: 130%; background: #f8fafc; }
+        .image-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .card-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+        .price { font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; margin-top: auto; }
+        
         .btn-add-cart {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #e2e8f0;
-            background: white;
-            color: #0f172a;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
+            width: 100%; padding: 14px; border: 1px solid #e2e8f0; background: white;
+            color: #0f172a; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
         }
+        .card:hover .btn-add-cart { background: var(--primary); color: white; border-color: var(--primary); }
 
-        .card:hover .btn-add-cart {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 8px 20px -6px rgba(190, 18, 60, 0.4);
-        }
-
-        .btn-add-cart:active {
-            transform: scale(0.97);
-        }
-
-        /* --- High End Dynamic Shopping Cart Drawer Section Layout --- */
+        /* --- Advanced Checkout & Pincode Module --- */
         .cart {
             background: white;
             margin: 80px auto;
@@ -424,100 +249,52 @@
             border: 1px solid #f1f5f9;
         }
 
-        .cart h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+        .cart h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 16px; }
+        .cart ul li { padding: 14px 0; border-bottom: 1px dashed #e2e8f0; display: flex; justify-content: space-between; font-weight: 500; }
+        
+        .breakdown-row {
+            display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.95rem; margin-top: 10px;
+        }
+
+        .pincode-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 14px;
             margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid #f1f5f9;
-            padding-bottom: 16px;
-            color: #1e293b;
+            border: 1px solid #e2e8f0;
         }
+        .pincode-box label { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 8px; }
+        .pincode-row { display: flex; gap: 10px; }
+        .pincode-row input { flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; }
+        .btn-verify { background: #0f172a; color: white; border: none; padding: 0 20px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .pincode-status { font-size: 0.85rem; font-weight: 600; margin-top: 6px; display: none; }
 
-        .cart ul { list-style: none; margin-bottom: 25px; }
-
-        .cart ul li {
-            padding: 16px 0;
-            border-bottom: 1px dashed #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-            font-size: 1.05rem;
+        .payment-methods { margin: 20px 0; }
+        .payment-methods label { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 8px; }
+        .methods-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .method-opt {
+            border: 2px solid #e2e8f0; padding: 14px; border-radius: 12px; cursor: pointer;
+            text-align: center; font-weight: 600; font-size: 0.95rem; transition: all 0.2s;
         }
+        .method-opt.selected { border-color: var(--primary); background: #fff1f2; color: var(--primary); }
 
-        .cart h3 {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-            color: #0f172a;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 20px;
-        }
+        .cart h3 { display: flex; justify-content: space-between; font-size: 1.5rem; margin: 25px 0; border-top: 1px solid #f1f5f9; padding-top: 20px; }
 
         .btn-whatsapp { 
-            background: #128c7e; 
-            font-size: 1.05rem; 
-            padding: 16px; 
-            border: none; 
-            width: 100%; 
-            color: white; 
-            font-weight: 600; 
-            border-radius: 14px; 
-            cursor: pointer;
-            box-shadow: 0 10px 25px -6px rgba(18, 140, 126, 0.3);
-            transition: all 0.25s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+            background: #128c7e; font-size: 1.05rem; padding: 16px; border: none; width: 100%; color: white;
+            font-weight: 600; border-radius: 14px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;
         }
-        .btn-whatsapp:hover { 
-            background: #075e54; 
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px -4px rgba(18, 140, 126, 0.4);
-        }
+        .btn-whatsapp:hover { background: #075e54; }
 
-        /* --- Social & Brand Footer System --- */
         .social { text-align: center; padding: 60px 20px; background: #ffffff; border-top: 1px solid #f1f5f9; }
-        .social a {
-            text-decoration: none; font-size: 0.95rem; color: #64748b; font-weight: 600;
-            display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px;
-            border: 1px solid #e2e8f0; border-radius: 40px; transition: all 0.25s ease;
-        }
-        .social a:hover {
-            color: #c13584;
-            background: #fff5f7;
-            border-color: #fecdd3;
-            transform: translateY(-1px);
-        }
-
-        footer { background: #0f172a; color: #64748b; text-align: center; padding: 35px; font-size: 0.9rem; border-top: 1px solid #1e293b; }
-        
-        .secret-trigger { cursor: pointer; transition: color 0.2s ease; }
-        .secret-trigger:hover { color: #94a3b8; }
-
-        .no-items {
-            grid-column: 1 / -1;
-            text-align: center;
-            color: var(--text-muted);
-            padding: 60px 20px;
-            font-weight: 500;
-            font-size: 1.1rem;
-            border: 1px dashed #cbd5e1;
-            border-radius: 16px;
-            background-color: #ffffff;
-        }
+        .social a { text-decoration: none; font-size: 0.95rem; color: #64748b; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px; border: 1px solid #e2e8f0; border-radius: 40px; }
+        footer { background: #0f172a; color: #64748b; text-align: center; padding: 35px; font-size: 0.9rem; }
+        .secret-trigger { cursor: pointer; }
 
         @media (max-width: 768px) {
             .hero-banner h1 { font-size: 2.6rem; }
-            .categories { grid-template-columns: 1fr; gap: 20px; }
-            .products { grid-template-columns: 1fr; gap: 25px; }
-            .cart { padding: 25px 20px; }
+            .categories { grid-template-columns: 1fr; }
+            .methods-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -542,7 +319,7 @@
 
 <div class="container">
 
-    <!-- Dynamic Item Upload Form (Hidden Workspace Gatekeeper Panel) -->
+    <!-- Merchant Workspace Panel -->
     <div class="upload-section" id="merchantPanel">
         <h3>✨ Merchant Workspace: Add New Catalog Item</h3>
         <div class="form-grid">
@@ -592,22 +369,44 @@
         </div>
     </div>
 
-    <!-- Category Filterable Retail Workspace view -->
+    <!-- Shop Workspace view -->
     <div id="shopView" style="display: none;">
-        <!-- Collection Sub Category Tabs Navigation Matrix -->
         <div class="sub-tabs" id="subTabsContainer"></div>
-
-        <!-- Dynamic Product Context Header -->
         <h2 id="displayTitle" class="section-title">Women's Collection</h2>
         <div class="products" id="productGrid"></div>
     </div>
 
-    <!-- Retail Shopping Cart Interface Layout panel -->
+    <!-- Retail Shopping Cart Interface Panel -->
     <div id="cart" class="cart">
         <h2>🛒 Your Shopping Cart</h2>
         <ul id="cartItems">
             <li style="color: var(--text-muted); border: none; justify-content: center; font-size: 0.95rem;">Your shopping cart is currently empty</li>
         </ul>
+
+        <!-- Pincode Availability Module -->
+        <div class="pincode-box">
+            <label>📍 Check Delivery Availability</label>
+            <div class="pincode-row">
+                <input type="text" id="pincodeInput" maxlength="6" placeholder="Enter 6-digit Pincode">
+                <button class="btn-verify" onclick="checkPincode()">Verify</button>
+            </div>
+            <div id="pincodeStatus" class="pincode-status"></div>
+        </div>
+
+        <!-- Payment Method Choice Module -->
+        <div class="payment-methods">
+            <label>💳 Select Payment Mode Preference</label>
+            <div class="methods-grid">
+                <div class="method-opt selected" id="payUPI" onclick="selectPayment('UPI')">Instant UPI Pay</div>
+                <div class="method-opt" id="payCOD" onclick="selectPayment('COD')">Cash on Delivery (COD)</div>
+            </div>
+        </div>
+
+        <!-- Financial Breakdown Ledger -->
+        <div class="breakdown-row"><span>Items Subtotal:</span><span>₹<span id="subtotalVal">0</span></span></div>
+        <div class="breakdown-row"><span>Estimated Tax (5% GST):</span><span>₹<span id="taxVal">0</span></span></div>
+        <div class="breakdown-row"><span>Shipping Charges:</span><span><span id="shippingVal">₹0</span></span></div>
+
         <h3>Total Order Amount: <span>₹<span id="total">0</span></span></h3>
         <button class="btn-whatsapp" onclick="checkoutWhatsApp()">
             Secure Checkout via WhatsApp
@@ -627,6 +426,7 @@
 
 <script>
     const SECRET_ACCESS_PIN = "1234";
+    const MERCHANT_UPI_ID = "917702353593@ybl"; // Replace this with your actual structural UPI VPA ID handle!
 
     const structure = {
         women: ["Kurtas", "Sarees", "Tops & More", "Jeans"],
@@ -637,14 +437,15 @@
         { id: 1, main: "women", sub: "Sarees", name: "Premium Designer Silk Saree", price: 1899, img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80" },
         { id: 2, main: "women", sub: "Tops & More", name: "Stylish Linen Casual Top", price: 499, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" },
         { id: 3, main: "women", sub: "Kurtas", name: "Floral Summer Pure Kurti", price: 799, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" },
-        { id: 4, main: "women", sub: "Jeans", name: "High-Waist Comfort Fit Denim", price: 1199, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80" },
-        { id: 5, main: "kids", sub: "Party Wear", name: "Kids Premium Sparkle Gown", price: 999, img: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=500&q=80" },
-        { id: 6, main: "kids", sub: "Frocks", name: "Casual Cotton Everyday Frock", price: 399, img: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" }
+        { id: 4, main: "women", sub: "Jeans", name: "High-Waist Comfort Fit Denim", price: 1199, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80" }
     ];
 
     let currentMainCategory = "women";
     let currentSubCategory = "All";
     let cart = [];
+    let isPincodeVerified = false;
+    let selectedPincode = "";
+    let selectedPaymentMode = "UPI";
 
     window.onload = function() {
         updateSubCategoryDropdown();
@@ -654,7 +455,6 @@
     function showHome() {
         document.getElementById("homeView").style.display = "block";
         document.getElementById("shopView").style.display = "none";
-        
         document.querySelectorAll('nav a').forEach(el => el.classList.remove('nav-active'));
         document.getElementById("nav-home").classList.add('nav-active');
         window.scrollTo(0,0);
@@ -663,29 +463,21 @@
     function showCategory(mainCat) {
         currentMainCategory = mainCat;
         currentSubCategory = "All"; 
-        
         document.getElementById("homeView").style.display = "none";
         document.getElementById("shopView").style.display = "block";
-        
         document.querySelectorAll('nav a').forEach(el => el.classList.remove('nav-active'));
         document.getElementById(`nav-${mainCat}`).classList.add('nav-active');
-        
         document.getElementById("displayTitle").innerText = `${mainCat.charAt(0).toUpperCase() + mainCat.slice(1)}'s Collection`;
-        
         generateSubTabs();
         renderProducts();
         window.scrollTo(0,0);
     }
 
     function unlockMerchantWorkspace() {
-        let entryPrompt = prompt("Access Restricted. Enter Merchant Pin Code to unlock tools panel:");
+        let entryPrompt = prompt("Access Restricted. Enter Merchant Pin:");
         if (entryPrompt === SECRET_ACCESS_PIN) {
-            const panel = document.getElementById("merchantPanel");
-            panel.style.display = "block";
-            panel.scrollIntoView({ behavior: 'smooth' });
-            alert("Workspace Authenticated securely.");
-        } else if (entryPrompt !== null) {
-            alert("Authentication Failed.");
+            document.getElementById("merchantPanel").style.display = "block";
+            document.getElementById("merchantPanel").scrollIntoView({ behavior: 'smooth' });
         }
     }
 
@@ -701,10 +493,8 @@
     function generateSubTabs() {
         const tabsContainer = document.getElementById("subTabsContainer");
         tabsContainer.innerHTML = "";
-        
         let allActive = currentSubCategory === "All" ? "active" : "";
         tabsContainer.innerHTML += `<button class="tab ${allActive}" onclick="filterSubCategory('All')">All Collection</button>`;
-        
         structure[currentMainCategory].forEach(subCat => {
             let activeClass = currentSubCategory === subCat ? "active" : "";
             tabsContainer.innerHTML += `<button class="tab ${activeClass}" onclick="filterSubCategory('${subCat}')">${subCat}</button>`;
@@ -713,36 +503,20 @@
 
     function filterSubCategory(subCat) {
         currentSubCategory = subCat;
-        document.querySelectorAll('.tab').forEach(btn => {
-            if(btn.innerText === subCat || (subCat === 'All' && btn.innerText === 'All Collection')) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
         renderProducts();
+        generateSubTabs();
     }
 
     function renderProducts() {
         const grid = document.getElementById("productGrid");
         grid.innerHTML = "";
-
         let filtered = dataset.filter(item => item.main === currentMainCategory);
-        if (currentSubCategory !== "All") {
-            filtered = filtered.filter(item => item.sub === currentSubCategory);
-        }
-
-        if(filtered.length === 0) {
-            grid.innerHTML = `<div class="no-items">No tailored styles found in this layout subcategory yet.</div>`;
-            return;
-        }
+        if (currentSubCategory !== "All") filtered = filtered.filter(item => item.sub === currentSubCategory);
 
         filtered.forEach(item => {
             grid.innerHTML += `
                 <div class="card">
-                    <div class="image-container">
-                        <img src="${item.img}" alt="${item.name}">
-                    </div>
+                    <div class="image-container"><img src="${item.img}" alt="${item.name}"></div>
                     <div class="card-content">
                         <h3>${item.name}</h3>
                         <p class="price">₹${item.price.toLocaleString('en-IN')}</p>
@@ -760,31 +534,13 @@
         const sub = document.getElementById("uploadSubCategory").value;
         const imgFile = document.getElementById("uploadImage").files[0];
 
-        if(!name || !price || !imgFile) {
-            alert("Please accurately fill out all tracking parameters.");
-            return;
-        }
+        if(!name || !price || !imgFile) return alert("Complete all variables first.");
 
         const reader = new FileReader();
         reader.onload = function(e) {
-            const newProduct = {
-                id: dataset.length + 1,
-                main: main,
-                sub: sub,
-                name: name,
-                price: price,
-                img: e.target.result 
-            };
-
-            dataset.unshift(newProduct); 
+            dataset.unshift({ id: dataset.length + 1, main, sub, name, price, img: e.target.result });
             alert("Product published completely.");
-            
-            document.getElementById("uploadName").value = "";
-            document.getElementById("uploadPrice").value = "";
-            document.getElementById("uploadImage").value = "";
-            
             showCategory(main);
-            filterSubCategory(sub);
         };
         reader.readAsDataURL(imgFile);
     }
@@ -792,18 +548,37 @@
     function addToCart(product, price) {
         cart.push({ product: product, price: price });
         updateCart();
+    }
+
+    function selectPayment(mode) {
+        selectedPaymentMode = mode;
+        document.getElementById("payUPI").classList.toggle("selected", mode === "UPI");
+        document.getElementById("payCOD").classList.toggle("selected", mode === "COD");
+    }
+
+    function checkPincode() {
+        let pin = document.getElementById("pincodeInput").value.trim();
+        let status = document.getElementById("pincodeStatus");
         
-        // Quick subtle confirmation pop animation on badge tracker
-        const badge = document.getElementById("navCartCount");
-        badge.style.transform = "scale(1.3)";
-        setTimeout(() => badge.style.transform = "scale(1)", 200);
+        if(pin.length === 6 && !isNaN(pin)) {
+            isPincodeVerified = true;
+            selectedPincode = pin;
+            status.style.display = "block";
+            status.style.color = "#16a34a";
+            status.innerText = "✓ Serviceable Location! Standard delivery available.";
+            updateCart(); // Refresh delivery parameters
+        } else {
+            isPincodeVerified = false;
+            status.style.display = "block";
+            status.style.color = "#dc2626";
+            status.innerText = "✕ Please enter a valid 6-digit Indian postal code.";
+        }
     }
 
     function updateCart() {
         let cartItems = document.getElementById("cartItems");
-        let total = 0;
+        let subtotal = 0;
         cartItems.innerHTML = "";
-
         document.getElementById("navCartCount").innerText = cart.length;
 
         if (cart.length === 0) {
@@ -811,23 +586,47 @@
         } else {
             cart.forEach(function(item) {
                 cartItems.innerHTML += `<li><span>${item.product}</span><span>₹${item.price.toLocaleString('en-IN')}</span></li>`;
-                total += item.price;
+                subtotal += item.price;
             });
         }
-        document.getElementById("total").innerText = total.toLocaleString('en-IN');
+
+        // Financial Algorithms Calculations
+        let tax = Math.round(subtotal * 0.05); // 5% GST calculated instantly
+        let shipping = (subtotal > 0 && subtotal < 999) ? 60 : 0; // Free shipping threshold variant rule
+        let overallTotal = subtotal + tax + shipping;
+
+        document.getElementById("subtotalVal").innerText = subtotal.toLocaleString('en-IN');
+        document.getElementById("taxVal").innerText = tax.toLocaleString('en-IN');
+        document.getElementById("shippingVal").innerText = shipping === 0 ? "FREE" : "₹" + shipping;
+        document.getElementById("total").innerText = overallTotal.toLocaleString('en-IN');
     }
 
     function checkoutWhatsApp() {
-        if(cart.length === 0) {
-            alert("Please append selected styles to checkout.");
-            return;
-        }
+        if(cart.length === 0) return alert("Please add item sets to checkout.");
+        if(!isPincodeVerified) return alert("Please complete destination pincode validation before submitting order request.");
+
+        let finalBillAmount = document.getElementById("total").innerText.replace(/,/g, '');
         let phone = "917702353593";
-        let message = "Hello Kiwi Fashion Stores, I would like to place an order for:%0A";
+        
+        let message = `*NEW ORDER INCOMING - KIWI FASHION STORES*%0A`;
+        message += `============================%0A`;
         cart.forEach(function(item) {
             message += `• ${item.product} - ₹${item.price}%0A`;
         });
-        message += `%0A*Total Order Value: ₹${document.getElementById("total").innerText}*`;
+        message += `============================%0A`;
+        message += `📍 *Delivery Pincode:* ${selectedPincode}%0A`;
+        message += `💵 *Payment Mode Selection:* ${selectedPaymentMode}%0A%0A`;
+        message += `Items Subtotal: ₹${document.getElementById("subtotalVal").innerText}%0A`;
+        message += `Tax (5% GST): ₹${document.getElementById("taxVal").innerText}%0A`;
+        message += `Shipping Charge: ${document.getElementById("shippingVal").innerText}%0A`;
+        message += `*Grand Total Invoice: ₹${document.getElementById("total").innerText}*%0A%0A`;
+
+        if(selectedPaymentMode === "UPI") {
+            // Built standard fast deep link for UPI application environments
+            let upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Kiwi%20Fashion%20Stores&am=${finalBillAmount}&cu=INR`;
+            message += `⚡ *Click Link to Pay Instantly via UPI:* ${encodeURIComponent(upiLink)}%0A`;
+        }
+
         window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
     }
 </script>
