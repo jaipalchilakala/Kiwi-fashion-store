@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kiwi Fashion Stores</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -31,12 +32,13 @@
             background-color: var(--bg-light);
             color: var(--text-main);
             line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- Sophisticated Luxury Hero Design --- */
+        /* --- Luxury Hero Banner --- */
         .hero-banner {
             background: linear-gradient(135deg, #fff1f2 0%, #fff 50%, #f3f4f6 100%);
-            padding: 90px 20px;
+            padding: 60px 16px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -45,23 +47,23 @@
 
         .hero-banner h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             color: #4c0519;
-            margin-bottom: 12px;
-            line-height: 1.1;
+            margin-bottom: 8px;
+            line-height: 1.2;
         }
 
         .hero-banner p {
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
 
-        /* --- Sticky Navigation --- */
+        /* --- Responsive Sticky Navigation --- */
         nav {
             position: sticky;
             top: 0;
@@ -69,23 +71,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 35px;
-            background: rgba(255, 255, 255, 0.85);
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            padding: 20px;
+            padding: 15px;
             border-bottom: 1px solid rgba(241, 245, 249, 0.8);
+            flex-wrap: wrap;
         }
 
         nav a {
             text-decoration: none;
             color: #334155;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.25s ease;
             cursor: pointer;
             position: relative;
-            padding: 4px 0;
+            padding: 6px 4px;
         }
 
         nav a::after {
@@ -109,22 +112,22 @@
             color: white;
             font-size: 0.75rem;
             font-weight: 700;
-            padding: 2px 7px;
+            padding: 2px 8px;
             border-radius: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 16px;
         }
 
         .section-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 600;
-            margin: 60px 0 35px 0;
+            margin: 40px 0 25px 0;
             color: #1e293b;
         }
 
@@ -133,190 +136,187 @@
             display: none; 
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            padding: 35px;
-            margin: 40px auto;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 24px auto;
             max-width: 800px;
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
+            box-shadow: var(--card-shadow);
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 16px;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
         }
 
+        @media (min-width: 576px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+
         .form-group { display: flex; flex-direction: column; gap: 6px; }
-        .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+        .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
         .form-group input, .form-group select {
-            padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;
+            padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; outline: none;
         }
 
         .btn-submit {
             background: #0f172a; color: white; padding: 14px; border-radius: 8px;
-            font-weight: 600; cursor: pointer; width: 100%; border: none;
+            font-weight: 600; cursor: pointer; width: 100%; border: none; font-size: 0.95rem;
         }
 
-        /* --- Entry Categories --- */
+        /* --- Department Portal Gateways --- */
         .categories {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin: 20px auto 80px auto;
-            max-width: 1000px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 10px auto 50px auto;
+            max-width: 900px;
         }
+
+        @media (min-width: 650px) { .categories { grid-template-columns: repeat(2, 1fr); } }
 
         .category {
             background: #ffffff;
-            padding: 60px 40px;
-            border-radius: 24px;
+            padding: 40px 24px;
+            border-radius: 20px;
             text-align: center;
             box-shadow: var(--card-shadow);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
             border: 1px solid #f1f5f9;
             cursor: pointer;
         }
 
-        .category:hover {
-            transform: translateY(-8px);
+        .category:active, .category:hover {
+            transform: translateY(-4px);
             box-shadow: var(--hover-shadow);
         }
 
-        .category-icon { font-size: 3rem; margin-bottom: 20px; display: inline-block; }
-        .category h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 12px; }
-        .category p { color: var(--text-muted); font-size: 1rem; margin-bottom: 24px; }
+        .category-icon { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; }
+        .category h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+        .category p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
         .category-badge {
-            font-size: 0.9rem; font-weight: 600; color: var(--primary);
-            background: #fff1f2; padding: 8px 20px; border-radius: 30px;
+            font-size: 0.85rem; font-weight: 600; color: var(--primary);
+            background: #fff1f2; padding: 8px 16px; border-radius: 30px; display: inline-block;
         }
 
-        /* --- Product Grid & Sub Tabs --- */
-        .sub-tabs { display: flex; justify-content: center; gap: 14px; margin-bottom: 45px; flex-wrap: wrap; }
-        .tab { padding: 12px 28px; background: white; border: 1px solid #e2e8f0; border-radius: 40px; font-weight: 600; cursor: pointer; }
+        /* --- Sub-Category Tabs & Product Deck --- */
+        .sub-tabs { display: flex; justify-content: flex-start; gap: 10px; margin-bottom: 30px; overflow-x: auto; padding: 4px 0; -webkit-overflow-scrolling: touch; }
+        .sub-tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; background: white; border: 1px solid #e2e8f0; border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 0.85rem; white-space: nowrap; flex-shrink: 0; }
         .tab.active { background: #0f172a; color: white; border-color: #0f172a; }
 
-        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; margin-bottom: 80px; }
-        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--card-shadow); display: flex; flex-direction: column; border: 1px solid #f1f5f9; }
-        .image-container { position: relative; padding-top: 130%; background: #f8fafc; }
+        .products { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
+        @media (min-width: 480px) { .products { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+        @media (min-width: 900px) { .products { grid-template-columns: repeat(3, 1fr); gap: 30px; } }
+
+        .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); display: flex; flex-direction: column; border: 1px solid #f1f5f9; }
+        .image-container { position: relative; padding-top: 125%; background: #f8fafc; }
         .image-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        .card-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
-        .price { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: auto; }
+        .card-content { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-content h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; color: #1e293b; }
+        .price { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; color: #0f172a; }
         
-        /* Product Quantity Selector Component */
+        /* Universal Counter Widget */
         .qty-selector {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             background: #f1f5f9;
-            border-radius: 10px;
-            padding: 6px;
-            margin-bottom: 12px;
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 10px;
         }
         .qty-btn {
-            background: white;
-            border: 1px solid #cbd5e1;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
+            background: white; border: 1px solid #cbd5e1; width: 30px; height: 30px;
+            border-radius: 6px; font-weight: 700; font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
         }
-        .qty-btn:hover { background: var(--primary-accent); color: var(--primary); border-color: var(--primary); }
-        .qty-val { font-weight: 700; font-size: 1rem; min-width: 20px; text-align: center; }
+        .qty-val { font-weight: 700; font-size: 0.95rem; min-width: 20px; text-align: center; }
 
         .btn-add-cart {
-            width: 100%; padding: 14px; border: 1px solid #e2e8f0; background: white;
-            color: #0f172a; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            width: 100%; padding: 12px; border: 1px solid #cbd5e1; background: white;
+            color: #0f172a; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 0.9rem;
         }
-        .card:hover .btn-add-cart { background: var(--primary); color: white; border-color: var(--primary); }
+        .card:hover .btn-add-cart, .btn-add-cart:active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        .no-items {
-            grid-column: 1 / -1; text-align: center; color: var(--text-muted);
-            padding: 60px 20px; font-weight: 500; font-size: 1.1rem;
-            border: 1px dashed #cbd5e1; border-radius: 16px; background-color: #ffffff;
-        }
+        .no-items { grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px 16px; font-size: 1rem; }
 
-        /* --- Cart Layout & Advanced Panel --- */
+        /* --- Upgraded Cart Matrix Sheet Layout --- */
         .cart {
             background: white;
-            margin: 80px auto;
-            padding: 40px 35px;
-            border-radius: 24px;
+            margin: 40px auto;
+            padding: 24px 16px;
+            border-radius: 20px;
             box-shadow: var(--card-shadow);
-            max-width: 650px;
+            max-width: 600px;
             border: 1px solid #f1f5f9;
         }
 
-        .cart h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 16px; }
+        .cart h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
         
-        /* Modern Cart Rows */
+        /* Optimized Mobile Cart Structure rows */
         .cart-item-row {
-            padding: 16px 0;
+            padding: 14px 0;
             border-bottom: 1px dashed #e2e8f0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
         }
-        .cart-item-info { display: flex; flex-direction: column; gap: 4px; }
-        .cart-item-name { font-weight: 600; color: #1e293b; }
-        .cart-item-meta { font-size: 0.85rem; color: var(--text-muted); }
-        .cart-item-right { display: flex; align-items: center; gap: 20px; }
-        .cart-item-price { font-weight: 700; color: #0f172a; }
-        .btn-remove-item {
-            background: none; border: none; color: #ef4444; font-weight: 600;
-            font-size: 0.85rem; cursor: pointer; padding: 4px 8px; border-radius: 6px;
-        }
-        .btn-remove-item:hover { background: #fef2f2; }
-
-        .breakdown-row {
-            display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.95rem; margin-top: 10px;
+        @media (min-width: 400px) {
+            .cart-item-row { flex-direction: row; justify-content: space-between; align-items: center; }
         }
 
-        .pincode-box {
-            background: #f8fafc; padding: 20px; border-radius: 14px; margin-bottom: 25px; border: 1px solid #e2e8f0; margin-top: 25px;
+        .cart-item-info { display: flex; flex-direction: column; gap: 2px; }
+        .cart-item-name { font-weight: 600; color: #1e293b; font-size: 0.95rem; }
+        .cart-item-meta { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .cart-item-right { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+        @media (min-width: 400px) { .cart-item-right { justify-content: flex-end; } }
+
+        .cart-item-price { font-weight: 700; color: #0f172a; font-size: 0.95rem; min-width: 65px; text-align: right; }
+        .cart-qty-inline { display: flex; align-items: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 2px; }
+        .cart-qty-inline button { background: white; border: 1px solid #cbd5e1; width: 24px; height: 24px; font-weight: 700; font-size: 0.8rem; border-radius: 4px; cursor: pointer; }
+        .cart-qty-inline span { font-size: 0.85rem; font-weight: 700; padding: 0 8px; display: inline-block; min-width: 20px; text-align: center; }
+
+        .btn-remove-item { background: none; border: none; color: #ef4444; font-weight: 600; font-size: 0.8rem; cursor: pointer; padding: 4px; }
+
+        .breakdown-row { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; }
+
+        /* General Module Form Blocks */
+        .form-block-box { background: #f8fafc; padding: 16px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0; }
+        .form-block-box label { font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 6px; color: #1e293b; }
+        
+        .pincode-row { display: flex; gap: 8px; }
+        .pincode-row input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; outline: none; min-width: 0; }
+        .btn-verify { background: #0f172a; color: white; border: none; padding: 0 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+        .pincode-status { font-size: 0.8rem; font-weight: 600; margin-top: 6px; display: none; }
+
+        /* Full Address Field Setup */
+        .address-box textarea {
+            width: 100%; height: 75px; padding: 10px; border: 1px solid #cbd5e1;
+            border-radius: 6px; font-size: 0.95rem; outline: none; resize: none;
+            background: white; color: var(--text-main); transition: border 0.2s;
         }
-        .pincode-box label { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 8px; }
-        .pincode-row { display: flex; gap: 10px; }
-        .pincode-row input { flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; }
-        .btn-verify { background: #0f172a; color: white; border: none; padding: 0 20px; border-radius: 8px; font-weight: 600; cursor: pointer; }
-        .pincode-status { font-size: 0.85rem; font-weight: 600; margin-top: 6px; display: none; }
+        .address-box textarea:focus { border-color: var(--primary); }
 
         .payment-methods { margin: 20px 0; }
-        .payment-methods label { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 8px; }
-        .methods-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .method-opt {
-            border: 2px solid #e2e8f0; padding: 14px; border-radius: 12px; cursor: pointer;
-            text-align: center; font-weight: 600; font-size: 0.95rem; transition: all 0.2s;
-        }
+        .payment-methods label { font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 6px; }
+        .methods-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        @media (min-width: 400px) { .methods-grid { grid-template-columns: 1fr 1fr; } }
+        .method-opt { border: 2px solid #e2e8f0; padding: 12px; border-radius: 10px; cursor: pointer; text-align: center; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
         .method-opt.selected { border-color: var(--primary); background: #fff1f2; color: var(--primary); }
 
-        .cart h3 { display: flex; justify-content: space-between; font-size: 1.5rem; margin: 25px 0; border-top: 1px solid #f1f5f9; padding-top: 20px; }
+        .cart h3 { display: flex; justify-content: space-between; font-size: 1.3rem; margin: 20px 0; border-top: 1px solid #f1f5f9; padding-top: 16px; }
 
         .btn-whatsapp { 
-            background: #128c7e; font-size: 1.05rem; padding: 16px; border: none; width: 100%; color: white;
-            font-weight: 600; border-radius: 14px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;
+            background: #128c7e; font-size: 1rem; padding: 14px; border: none; width: 100%; color: white;
+            font-weight: 600; border-radius: 12px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;
         }
-        .btn-whatsapp:hover { background: #075e54; }
 
-        .social { text-align: center; padding: 60px 20px; background: #ffffff; border-top: 1px solid #f1f5f9; }
-        .social a { text-decoration: none; font-size: 0.95rem; color: #64748b; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px; border: 1px solid #e2e8f0; border-radius: 40px; }
-        footer { background: #0f172a; color: #64748b; text-align: center; padding: 35px; font-size: 0.9rem; }
+        .social { text-align: center; padding: 40px 16px; background: #ffffff; border-top: 1px solid #f1f5f9; }
+        .social a { text-decoration: none; font-size: 0.85rem; color: #64748b; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 40px; max-width: 100%; word-break: break-all; }
+        footer { background: #0f172a; color: #64748b; text-align: center; padding: 24px 16px; font-size: 0.85rem; }
         .secret-trigger { cursor: pointer; }
-
-        @media (max-width: 768px) {
-            .hero-banner h1 { font-size: 2.6rem; }
-            .categories { grid-template-columns: 1fr; }
-            .methods-grid { grid-template-columns: 1fr; }
-            .cart-item-row { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .cart-item-right { width: 100%; justify-content: space-between; }
-        }
     </style>
 </head>
 
@@ -326,7 +326,7 @@
     <div class="hero-banner-content">
         <p>Welcome To</p>
         <h1>Kiwi Fashion Stores</h1>
-        <p style="font-size: 0.9rem; margin-top: 5px; color: var(--primary); font-weight: 600;">Premium Luxury Collection</p>
+        <p style="font-size: 0.8rem; margin-top: 4px; color: var(--primary); font-weight: 600;">Premium Luxury Collection</p>
     </div>
 </section>
 
@@ -335,13 +335,13 @@
     <a id="nav-women" onclick="showCategory('women')">Women</a>
     <a id="nav-kids" onclick="showCategory('kids')">Kids</a>
     <a href="#cart" class="cart-nav-link">Cart <span class="cart-badge" id="navCartCount">0</span></a>
-    <a href="https://instagram.com/chjaipalreddy" target="_blank">Instagram</a>
 </nav>
 
 <div class="container">
 
+    <!-- Merchant Workspace Panel -->
     <div class="upload-section" id="merchantPanel">
-        <h3>✨ Merchant Workspace: Add New Catalog Item</h3>
+        <h3>✨ Merchant Workspace: Add Item</h3>
         <div class="form-grid">
             <div class="form-group">
                 <label>Main Department Target</label>
@@ -362,65 +362,78 @@
                 <label>Price Value (₹)</label>
                 <input type="number" id="uploadPrice" placeholder="e.g. 1299">
             </div>
-            <div class="form-group" style="grid-column: 1 / -1; margin-top: 10px;">
+            <div class="form-group" style="margin-top: 4px;">
                 <label>Upload High-Res Product Image</label>
                 <input type="file" id="uploadImage" accept="image/*">
             </div>
         </div>
-        <button class="btn-submit" onclick="handleMerchantUpload()" style="margin-top: 15px;">Publish Item Live</button>
+        <button class="btn-submit" onclick="handleMerchantUpload()" style="margin-top: 10px;">Publish Item Live</button>
     </div>
 
+    <!-- Home Page Portal Display -->
     <div id="homeView">
         <h2 class="section-title">Select Department</h2>
         <div class="categories">
             <div class="category" onclick="showCategory('women')">
                 <span class="category-icon">👩</span>
                 <h3>Women Department</h3>
-                <p>Explore luxury Sarees, Kurtas, Tops, Designer Denim & More</p>
+                <p>Explore luxury Sarees, Kurtas, Tops, Denim & More</p>
                 <span class="category-badge">Explore Collection ✨</span>
             </div>
             <div class="category" onclick="showCategory('kids')">
                 <span class="category-icon">👶</span>
                 <h3>Kids Department</h3>
-                <p>Curated Premium Party Wear, Frocks, Casual Outfits & Sets</p>
+                <p>Curated Premium Party Wear, Frocks & Casual Sets</p>
                 <span class="category-badge">Explore Collection ✨</span>
             </div>
         </div>
     </div>
 
+    <!-- Shop Workspace view -->
     <div id="shopView" style="display: none;">
         <div class="sub-tabs" id="subTabsContainer"></div>
         <h2 id="displayTitle" class="section-title">Women's Collection</h2>
         <div class="products" id="productGrid"></div>
     </div>
 
+    <!-- Retail Shopping Cart Interface Panel -->
     <div id="cart" class="cart">
         <h2>🛒 Your Shopping Cart</h2>
         <div id="cartItemsContainer">
-            </div>
+            <!-- Dynamic Cart Items Render Here -->
+        </div>
 
-        <div class="pincode-box">
+        <!-- Pincode Availability Module -->
+        <div class="form-block-box">
             <label>📍 Check Delivery Availability</label>
             <div class="pincode-row">
-                <input type="text" id="pincodeInput" maxlength="6" placeholder="Enter 6-digit Pincode">
+                <input type="tel" id="pincodeInput" maxlength="6" placeholder="6-digit Pincode">
                 <button class="btn-verify" onclick="checkPincode()">Verify</button>
             </div>
             <div id="pincodeStatus" class="pincode-status"></div>
         </div>
 
+        <!-- User Delivery Address Entry Section -->
+        <div class="form-block-box address-box">
+            <label>🏠 Detailed Delivery Address</label>
+            <textarea id="addressInput" placeholder="Enter full address details (Door No, Street Name, Area, City, Landmark...)"></textarea>
+        </div>
+
+        <!-- Payment Method Choice Module -->
         <div class="payment-methods">
             <label>💳 Select Payment Mode Preference</label>
             <div class="methods-grid">
                 <div class="method-opt selected" id="payUPI" onclick="selectPayment('UPI')">Instant UPI Pay</div>
-                <div class="method-opt" id="payCOD" onclick="selectPayment('COD')">Cash on Delivery (COD)</div>
+                <div class="method-opt" id="payCOD" onclick="selectPayment('COD')">Cash on Delivery</div>
             </div>
         </div>
 
+        <!-- Financial Breakdown Ledger -->
         <div class="breakdown-row"><span>Items Subtotal:</span><span>₹<span id="subtotalVal">0</span></span></div>
         <div class="breakdown-row"><span>Estimated Tax (5% GST):</span><span>₹<span id="taxVal">0</span></span></div>
         <div class="breakdown-row"><span>Shipping Charges:</span><span><span id="shippingVal">₹0</span></span></div>
 
-        <h3>Total Order Amount: <span>₹<span id="total">0</span></span></h3>
+        <h3>Total: <span>₹<span id="total">0</span></span></h3>
         <button class="btn-whatsapp" onclick="checkoutWhatsApp()">
             Secure Checkout via WhatsApp
         </button>
@@ -449,7 +462,7 @@
     let dataset = [
         { id: 1, main: "women", sub: "Sarees", name: "Premium Designer Silk Saree", price: 1899, img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80" },
         { id: 2, main: "women", sub: "Tops & More", name: "Stylish Linen Casual Top", price: 499, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" },
-        { id: 3, main: "women", sub: "Kurtas", name: "Floral Summer Pure Kurti", price: 799, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" },
+        { id: 3, main: "women", sub: "Kurtas", name: "Floral Summer Pure Kurti", price: 799, img: "https://images.unsplash.com/photo-1 containers.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" },
         { id: 4, main: "women", sub: "Jeans", name: "High-Waist Comfort Fit Denim", price: 1199, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80" },
         { id: 5, main: "kids", sub: "Party Wear", name: "Kids Premium Sparkle Gown", price: 999, img: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=500&q=80" },
         { id: 6, main: "kids", sub: "Frocks", name: "Casual Cotton Everyday Frock", price: 399, img: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" }
@@ -486,7 +499,7 @@
         document.getElementById("displayTitle").innerText = `${mainCat.charAt(0).toUpperCase() + mainCat.slice(1)}'s Collection`;
         
         generateSubTabs();
-        renderProducts(); // Explicitly renders products when navigating departments
+        renderProducts(); 
         window.scrollTo(0,0);
     }
 
@@ -521,7 +534,7 @@
     function filterSubCategory(subCat) {
         currentSubCategory = subCat;
         generateSubTabs();
-        renderProducts(); // Triggers the fresh filter view render accurately
+        renderProducts(); 
     }
 
     function renderProducts() {
@@ -531,7 +544,7 @@
         if (currentSubCategory !== "All") filtered = filtered.filter(item => item.sub === currentSubCategory);
 
         if(filtered.length === 0) {
-            grid.innerHTML = `<div class="no-items">No tailored styles found in this layout subcategory yet.</div>`;
+            grid.innerHTML = `<div class="no-items">No tailored styles found in this subcategory yet.</div>`;
             return;
         }
 
@@ -580,10 +593,19 @@
 
         qtyElement.innerText = "1";
         updateCart();
+    }
 
-        const badge = document.getElementById("navCartCount");
-        badge.style.transform = "scale(1.3)";
-        setTimeout(() => badge.style.transform = "scale(1)", 200);
+    function changeCartItemQty(itemId, direction) {
+        const itemIndex = cart.findIndex(item => item.product.id === itemId);
+        if (itemIndex === -1) return;
+
+        cart[itemIndex].quantity += direction;
+        
+        if (cart[itemIndex].quantity < 1) {
+            removeCartItemRow(itemId);
+        } else {
+            updateCart();
+        }
     }
 
     function removeCartItemRow(itemId) {
@@ -606,13 +628,13 @@
             selectedPincode = pin;
             status.style.display = "block";
             status.style.color = "#16a34a";
-            status.innerText = "✓ Serviceable Location! Standard delivery available.";
+            status.innerText = "✓ Serviceable Location!";
             updateCart(); 
         } else {
             isPincodeVerified = false;
             status.style.display = "block";
             status.style.color = "#dc2626";
-            status.innerText = "✕ Please enter a valid 6-digit Indian postal code.";
+            status.innerText = "✕ Invalid Pincode.";
         }
     }
 
@@ -623,7 +645,7 @@
         container.innerHTML = "";
 
         if (cart.length === 0) {
-            container.innerHTML = `<div style="color: var(--text-muted); text-align: center; padding: 20px 0; font-size: 0.95rem;">Your shopping cart is currently empty</div>`;
+            container.innerHTML = `<div style="color: var(--text-muted); text-align: center; padding: 20px 0; font-size: 0.9rem;">Your cart is empty</div>`;
         } else {
             cart.forEach(function(item) {
                 let rowCost = item.product.price * item.quantity;
@@ -634,11 +656,16 @@
                     <div class="cart-item-row">
                         <div class="cart-item-info">
                             <span class="cart-item-name">${item.product.name}</span>
-                            <span class="cart-item-meta">Unit Price: ₹${item.product.price} | Qty: ${item.quantity}</span>
+                            <span class="cart-item-meta">₹${item.product.price} / item</span>
                         </div>
                         <div class="cart-item-right">
+                            <div class="cart-qty-inline">
+                                <button onclick="changeCartItemQty(${item.product.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="changeCartItemQty(${item.product.id}, 1)">+</button>
+                            </div>
                             <span class="cart-item-price">₹${rowCost.toLocaleString('en-IN')}</span>
-                            <button class="btn-remove-item" onclick="removeCartItemRow(${item.product.id})">Remove</button>
+                            <button class="btn-remove-item" onclick="removeCartItemRow(${item.product.id})">🗑️</button>
                         </div>
                     </div>
                 `;
@@ -676,29 +703,33 @@
     }
 
     function checkoutWhatsApp() {
-        if(cart.length === 0) return alert("Please add item sets to checkout.");
-        if(!isPincodeVerified) return alert("Please complete destination pincode validation before submitting order request.");
+        if(cart.length === 0) return alert("Please add items to checkout.");
+        if(!isPincodeVerified) return alert("Please verify your pincode destination first.");
+        
+        let userAddress = document.getElementById("addressInput").value.trim();
+        if(!userAddress) return alert("Please type your complete delivery address before placing the order.");
 
         let finalBillAmount = document.getElementById("total").innerText.replace(/,/g, '');
         let phone = "917702353593";
         
-        let message = `*NEW ORDER INCOMING - KIWI FASHION STORES*%0A`;
+        let message = `*NEW ORDER - KIWI FASHION STORES*%0A`;
         message += `============================%0A`;
         cart.forEach(function(item) {
             let itemTotal = item.product.price * item.quantity;
             message += `• ${item.product.name} (x${item.quantity}) - ₹${itemTotal}%0A`;
         });
         message += `============================%0A`;
-        message += `📍 *Delivery Pincode:* ${selectedPincode}%0A`;
-        message += `💵 *Payment Mode Selection:* ${selectedPaymentMode}%0A%0A`;
-        message += `Items Subtotal: ₹${document.getElementById("subtotalVal").innerText}%0A`;
+        message += `📍 *Pincode:* ${selectedPincode}%0A`;
+        message += `🏠 *Delivery Address:* ${encodeURIComponent(userAddress)}%0A`;
+        message += `💵 *Payment Mode:* ${selectedPaymentMode}%0A%0A`;
+        message += `Subtotal: ₹${document.getElementById("subtotalVal").innerText}%0A`;
         message += `Tax (5% GST): ₹${document.getElementById("taxVal").innerText}%0A`;
-        message += `Shipping Charge: ${document.getElementById("shippingVal").innerText}%0A`;
-        message += `*Grand Total Invoice: ₹${document.getElementById("total").innerText}*%0A%0A`;
+        message += `Shipping: ${document.getElementById("shippingVal").innerText}%0A`;
+        message += `*Grand Total: ₹${document.getElementById("total").innerText}*%0A%0A`;
 
         if(selectedPaymentMode === "UPI") {
             let upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Kiwi%20Fashion%20Stores&am=${finalBillAmount}&cu=INR`;
-            message += `⚡ *Click Link to Pay Instantly via UPI:* ${encodeURIComponent(upiLink)}%0A`;
+            message += `⚡ *Click Link to Pay via UPI:* ${encodeURIComponent(upiLink)}%0A`;
         }
 
         window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
