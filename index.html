@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kiwi Fashion Stores</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -131,7 +130,7 @@
             color: #1e293b;
         }
 
-        /* --- Merchant Workspace --- */
+        /* --- Merchant Workspace Panels --- */
         .upload-section {
             display: none; 
             background: #ffffff;
@@ -139,8 +138,17 @@
             border-radius: 16px;
             padding: 20px;
             margin: 24px auto;
-            max-width: 800px;
+            max-width: 900px;
             box-shadow: var(--card-shadow);
+        }
+
+        .upload-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: #0f172a;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
         }
 
         .form-grid {
@@ -162,6 +170,43 @@
             background: #0f172a; color: white; padding: 14px; border-radius: 8px;
             font-weight: 600; cursor: pointer; width: 100%; border: none; font-size: 0.95rem;
         }
+
+        /* Analytics Specific Styles */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .metric-card h4 { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
+        .metric-card p { font-size: 1.6rem; font-weight: 700; color: #0f172a; }
+
+        .order-log-container {
+            max-height: 350px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .order-log-card {
+            background: white;
+            padding: 14px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+        .order-log-card:last-child { border-bottom: none; }
+        .order-meta-header { display: flex; justify-content: space-between; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+        .order-items-list { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; padding-left: 14px; }
 
         /* --- Department Portal Gateways --- */
         .categories {
@@ -208,7 +253,7 @@
         @media (min-width: 480px) { .products { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
         @media (min-width: 900px) { .products { grid-template-columns: repeat(3, 1fr); gap: 30px; } }
 
-        .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); display: flex; flex-direction: column; border: 1px solid #f1f5f9; }
+        .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); display: flex; flex-direction: column; border: 1px solid #f1f5f9; position: relative; }
         .image-container { position: relative; padding-top: 125%; background: #f8fafc; }
         .image-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
         .card-content { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
@@ -239,9 +284,18 @@
         }
         .card:hover .btn-add-cart, .btn-add-cart:active { background: var(--primary); color: white; border-color: var(--primary); }
 
+        /* Permanent Workspace Delete System Action Elements */
+        .merchant-delete-badge {
+            display: none; position: absolute; top: 12px; right: 12px; background: rgba(239, 68, 68, 0.95);
+            color: white; border: none; padding: 6px 12px; border-radius: 30px; font-size: 0.75rem;
+            font-weight: 700; cursor: pointer; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: background 0.2s; backdrop-filter: blur(4px);
+        }
+        .merchant-delete-badge:hover { background: #dc2626; }
+
         .no-items { grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px 16px; font-size: 1rem; }
 
-        /* --- Upgraded Cart Matrix Sheet Layout --- */
+        /* --- Cart Matrix Layout --- */
         .cart {
             background: white;
             margin: 40px auto;
@@ -254,7 +308,6 @@
 
         .cart h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
         
-        /* Optimized Mobile Cart Structure rows */
         .cart-item-row {
             padding: 14px 0;
             border-bottom: 1px dashed #e2e8f0;
@@ -282,7 +335,6 @@
 
         .breakdown-row { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; }
 
-        /* General Module Form Blocks */
         .form-block-box { background: #f8fafc; padding: 16px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0; }
         .form-block-box label { font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 6px; color: #1e293b; }
         
@@ -291,7 +343,6 @@
         .btn-verify { background: #0f172a; color: white; border: none; padding: 0 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
         .pincode-status { font-size: 0.8rem; font-weight: 600; margin-top: 6px; display: none; }
 
-        /* Full Address Field Setup */
         .address-box textarea {
             width: 100%; height: 75px; padding: 10px; border: 1px solid #cbd5e1;
             border-radius: 6px; font-size: 0.95rem; outline: none; resize: none;
@@ -339,9 +390,8 @@
 
 <div class="container">
 
-    <!-- Merchant Workspace Panel -->
     <div class="upload-section" id="merchantPanel">
-        <h3>✨ Merchant Workspace: Add Item</h3>
+        <h3>✨ Merchant Workspace: Add Item Inventory</h3>
         <div class="form-grid">
             <div class="form-group">
                 <label>Main Department Target</label>
@@ -368,9 +418,28 @@
             </div>
         </div>
         <button class="btn-submit" onclick="handleMerchantUpload()" style="margin-top: 10px;">Publish Item Live</button>
+
+        <h3 style="margin-top: 40px;">📊 Sales & Order Analytics Dashboard</h3>
+        <div class="analytics-grid">
+            <div class="metric-card">
+                <h4>Total Revenue Logged</h4>
+                <p>₹<span id="statRevenue">0</span></p>
+            </div>
+            <div class="metric-card">
+                <h4>Women Orders Count</h4>
+                <p id="statWomenCount">0 Items</p>
+            </div>
+            <div class="metric-card">
+                <h4>Kids Orders Count</h4>
+                <p id="statKidsCount">0 Items</p>
+            </div>
+        </div>
+
+        <h4>Customer Bills & Order Receipts Ledger</h4>
+        <div class="order-log-container" id="orderHistoryLedgerContainer">
+            </div>
     </div>
 
-    <!-- Home Page Portal Display -->
     <div id="homeView">
         <h2 class="section-title">Select Department</h2>
         <div class="categories">
@@ -389,21 +458,16 @@
         </div>
     </div>
 
-    <!-- Shop Workspace view -->
     <div id="shopView" style="display: none;">
         <div class="sub-tabs" id="subTabsContainer"></div>
         <h2 id="displayTitle" class="section-title">Women's Collection</h2>
         <div class="products" id="productGrid"></div>
     </div>
 
-    <!-- Retail Shopping Cart Interface Panel -->
     <div id="cart" class="cart">
         <h2>🛒 Your Shopping Cart</h2>
-        <div id="cartItemsContainer">
-            <!-- Dynamic Cart Items Render Here -->
-        </div>
+        <div id="cartItemsContainer"></div>
 
-        <!-- Pincode Availability Module -->
         <div class="form-block-box">
             <label>📍 Check Delivery Availability</label>
             <div class="pincode-row">
@@ -413,13 +477,11 @@
             <div id="pincodeStatus" class="pincode-status"></div>
         </div>
 
-        <!-- User Delivery Address Entry Section -->
         <div class="form-block-box address-box">
             <label>🏠 Detailed Delivery Address</label>
             <textarea id="addressInput" placeholder="Enter full address details (Door No, Street Name, Area, City, Landmark...)"></textarea>
         </div>
 
-        <!-- Payment Method Choice Module -->
         <div class="payment-methods">
             <label>💳 Select Payment Mode Preference</label>
             <div class="methods-grid">
@@ -428,7 +490,6 @@
             </div>
         </div>
 
-        <!-- Financial Breakdown Ledger -->
         <div class="breakdown-row"><span>Items Subtotal:</span><span>₹<span id="subtotalVal">0</span></span></div>
         <div class="breakdown-row"><span>Estimated Tax (5% GST):</span><span>₹<span id="taxVal">0</span></span></div>
         <div class="breakdown-row"><span>Shipping Charges:</span><span><span id="shippingVal">₹0</span></span></div>
@@ -441,7 +502,7 @@
 </div>
 
 <div class="social">
-    <a href="https://instagram.com/kiwi_fashions" target="_blank">
+    <a href="https://instagram.com/chjaipalreddy" target="_blank">
         📸 Follow @KiwiFashionStores on Instagram
     </a>
 </div>
@@ -459,27 +520,51 @@
         kids: ["Party Wear", "Frocks", "Casuals"]
     };
 
-    let dataset = [
+    const initialDataset = [
         { id: 1, main: "women", sub: "Sarees", name: "Premium Designer Silk Saree", price: 1899, img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80" },
         { id: 2, main: "women", sub: "Tops & More", name: "Stylish Linen Casual Top", price: 499, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" },
-        { id: 3, main: "women", sub: "Kurtas", name: "Floral Summer Pure Kurti", price: 799, img: "https://images.unsplash.com/photo-1 containers.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" },
+        { id: 3, main: "women", sub: "Kurtas", name: "Floral Summer Pure Kurti", price: 799, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" },
         { id: 4, main: "women", sub: "Jeans", name: "High-Waist Comfort Fit Denim", price: 1199, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80" },
         { id: 5, main: "kids", sub: "Party Wear", name: "Kids Premium Sparkle Gown", price: 999, img: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=500&q=80" },
         { id: 6, main: "kids", sub: "Frocks", name: "Casual Cotton Everyday Frock", price: 399, img: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" }
     ];
 
+    let dataset = [];
     let currentMainCategory = "women";
     let currentSubCategory = "All";
     let cart = []; 
     let isPincodeVerified = false;
     let selectedPincode = "";
     let selectedPaymentMode = "UPI";
+    let isMerchantModeActive = false;
 
     window.onload = function() {
+        loadDataFromStorage();
         updateSubCategoryDropdown();
         showHome();
         updateCart();
     };
+
+    function loadDataFromStorage() {
+        // Read active custom inventory extensions
+        const savedProducts = localStorage.getItem('kiwi_custom_products');
+        // Read globally deleted default base keys tracking configurations
+        const blacklistedIds = localStorage.getItem('kiwi_deleted_base_ids');
+        let blacklist = blacklistedIds ? JSON.parse(blacklistedIds) : [];
+
+        let baseArray = initialDataset.filter(item => !blacklist.includes(item.id));
+
+        if (savedProducts) {
+            try {
+                const parsed = JSON.parse(savedProducts);
+                dataset = [...parsed, ...baseArray];
+            } catch(e) {
+                dataset = [...baseArray];
+            }
+        } else {
+            dataset = [...baseArray];
+        }
+    }
 
     function showHome() {
         document.getElementById("homeView").style.display = "block";
@@ -506,9 +591,88 @@
     function unlockMerchantWorkspace() {
         let entryPrompt = prompt("Access Restricted. Enter Merchant Pin:");
         if (entryPrompt === SECRET_ACCESS_PIN) {
+            isMerchantModeActive = true;
             document.getElementById("merchantPanel").style.display = "block";
+            renderMerchantAnalyticsDashboard();
+            renderProducts(); // Refresh layouts to inject live action deletion tags
             document.getElementById("merchantPanel").scrollIntoView({ behavior: 'smooth' });
         }
+    }
+
+    // New API Strategy: Category Wise Order Matrix Calculation Engine
+    function renderMerchantAnalyticsDashboard() {
+        let savedOrdersRaw = localStorage.getItem('kiwi_sales_ledger');
+        let logs = savedOrdersRaw ? JSON.parse(savedOrdersRaw) : [];
+
+        let runningRevenueSum = 0;
+        let womenProductsUnitsSold = 0;
+        let kidsProductsUnitsSold = 0;
+
+        let ledgerContainer = document.getElementById("orderHistoryLedgerContainer");
+        ledgerContainer.innerHTML = "";
+
+        if(logs.length === 0) {
+            ledgerContainer.innerHTML = `<div style="padding: 20px; text-align: center; color: var(--text-muted);">No sales invoices logged yet.</div>`;
+        } else {
+            logs.forEach(order => {
+                runningRevenueSum += parseInt(order.grandTotalBill);
+                
+                let orderItemsRowsText = "";
+                order.purchasedItems.forEach(u => {
+                    if(u.catMain === "women") womenProductsUnitsSold += u.qty;
+                    if(u.catMain === "kids") kidsProductsUnitsSold += u.qty;
+                    orderItemsRowsText += `<li>${u.name} (x${u.qty}) - ₹${u.price * u.qty}</li>`;
+                });
+
+                ledgerContainer.innerHTML += `
+                    <div class="order-log-card">
+                        <div class="order-meta-header">
+                            <span>Order #${order.orderId}</span>
+                            <span style="color: var(--primary);">₹${order.grandTotalBill.toLocaleString('en-IN')}</span>
+                        </div>
+                        <div style="font-size: 0.8rem; margin-bottom: 4px; color: #64748b;">
+                            📅 Date: ${order.timestamp} | 💳 Pay Mode: ${order.paymentMode} | 📍 Pin: ${order.pincode}
+                        </div>
+                        <ul class="order-items-list">${orderItemsRowsText}</ul>
+                        <div style="font-size: 0.8rem; background: #f1f5f9; padding: 6px; border-radius: 4px; word-break: break-all;">
+                            <strong>Delivery Address:</strong> ${order.address}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        document.getElementById("statRevenue").innerText = runningRevenueSum.toLocaleString('en-IN');
+        document.getElementById("statWomenCount").innerText = `${womenProductsUnitsSold} Unit(s)`;
+        document.getElementById("statKidsCount").innerText = `${kidsProductsUnitsSold} Unit(s)`;
+    }
+
+    // New API Strategy: Delete items globally from system runtime configuration pipeline
+    function removeProductFromWebsite(itemId) {
+        if(!confirm("Are you sure you want to permanently delete this product from the website?")) return;
+
+        // Check if item is inside the uploaded custom items storage array
+        let savedProducts = localStorage.getItem('kiwi_custom_products');
+        let customArray = savedProducts ? JSON.parse(savedProducts) : [];
+        let hasCustomMatch = customArray.some(item => item.id === itemId);
+
+        if(hasCustomMatch) {
+            customArray = customArray.filter(item => item.id !== itemId);
+            localStorage.setItem('kiwi_custom_products', JSON.stringify(customArray));
+        } else {
+            // It belongs to the baseline asset list. Blacklist the runtime index target mapping ID
+            let blacklistedIds = localStorage.getItem('kiwi_deleted_base_ids');
+            let blacklist = blacklistedIds ? JSON.parse(blacklistedIds) : [];
+            if(!blacklist.includes(itemId)) {
+                blacklist.push(itemId);
+                localStorage.setItem('kiwi_deleted_base_ids', JSON.stringify(blacklist));
+            }
+        }
+
+        alert("Product wiped successfully.");
+        loadDataFromStorage();
+        renderProducts();
+        renderMerchantAnalyticsDashboard(); // Recalculate metrics
     }
 
     function updateSubCategoryDropdown() {
@@ -549,8 +713,11 @@
         }
 
         filtered.forEach(item => {
+            let showDeleteStyle = isMerchantModeActive ? "display: block;" : "display: none;";
+            
             grid.innerHTML += `
                 <div class="card">
+                    <button class="merchant-delete-badge" style="${showDeleteStyle}" onclick="removeProductFromWebsite(${item.id})">Delete Item 🗑️</button>
                     <div class="image-container"><img src="${item.img}" alt="${item.name}"></div>
                     <div class="card-content">
                         <h3>${item.name}</h3>
@@ -600,7 +767,6 @@
         if (itemIndex === -1) return;
 
         cart[itemIndex].quantity += direction;
-        
         if (cart[itemIndex].quantity < 1) {
             removeCartItemRow(itemId);
         } else {
@@ -618,123 +784,3 @@
         document.getElementById("payUPI").classList.toggle("selected", mode === "UPI");
         document.getElementById("payCOD").classList.toggle("selected", mode === "COD");
     }
-
-    function checkPincode() {
-        let pin = document.getElementById("pincodeInput").value.trim();
-        let status = document.getElementById("pincodeStatus");
-        
-        if(pin.length === 6 && !isNaN(pin)) {
-            isPincodeVerified = true;
-            selectedPincode = pin;
-            status.style.display = "block";
-            status.style.color = "#16a34a";
-            status.innerText = "✓ Serviceable Location!";
-            updateCart(); 
-        } else {
-            isPincodeVerified = false;
-            status.style.display = "block";
-            status.style.color = "#dc2626";
-            status.innerText = "✕ Invalid Pincode.";
-        }
-    }
-
-    function updateCart() {
-        let container = document.getElementById("cartItemsContainer");
-        let subtotal = 0;
-        let totalUnitsCount = 0;
-        container.innerHTML = "";
-
-        if (cart.length === 0) {
-            container.innerHTML = `<div style="color: var(--text-muted); text-align: center; padding: 20px 0; font-size: 0.9rem;">Your cart is empty</div>`;
-        } else {
-            cart.forEach(function(item) {
-                let rowCost = item.product.price * item.quantity;
-                subtotal += rowCost;
-                totalUnitsCount += item.quantity;
-
-                container.innerHTML += `
-                    <div class="cart-item-row">
-                        <div class="cart-item-info">
-                            <span class="cart-item-name">${item.product.name}</span>
-                            <span class="cart-item-meta">₹${item.product.price} / item</span>
-                        </div>
-                        <div class="cart-item-right">
-                            <div class="cart-qty-inline">
-                                <button onclick="changeCartItemQty(${item.product.id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button onclick="changeCartItemQty(${item.product.id}, 1)">+</button>
-                            </div>
-                            <span class="cart-item-price">₹${rowCost.toLocaleString('en-IN')}</span>
-                            <button class="btn-remove-item" onclick="removeCartItemRow(${item.product.id})">🗑️</button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        document.getElementById("navCartCount").innerText = totalUnitsCount;
-
-        let tax = Math.round(subtotal * 0.05); 
-        let shipping = (subtotal > 0 && subtotal < 999) ? 60 : 0; 
-        let overallTotal = subtotal + tax + shipping;
-
-        document.getElementById("subtotalVal").innerText = subtotal.toLocaleString('en-IN');
-        document.getElementById("taxVal").innerText = tax.toLocaleString('en-IN');
-        document.getElementById("shippingVal").innerText = shipping === 0 ? "FREE" : "₹" + shipping;
-        document.getElementById("total").innerText = overallTotal.toLocaleString('en-IN');
-    }
-
-    function handleMerchantUpload() {
-        const name = document.getElementById("uploadName").value.trim();
-        const price = parseInt(document.getElementById("uploadPrice").value);
-        const main = document.getElementById("uploadMainCategory").value;
-        const sub = document.getElementById("uploadSubCategory").value;
-        const imgFile = document.getElementById("uploadImage").files[0];
-
-        if(!name || !price || !imgFile) return alert("Complete all variables first.");
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            dataset.unshift({ id: dataset.length + 1, main, sub, name, price, img: e.target.result });
-            alert("Product published completely.");
-            showCategory(main);
-        };
-        reader.readAsDataURL(imgFile);
-    }
-
-    function checkoutWhatsApp() {
-        if(cart.length === 0) return alert("Please add items to checkout.");
-        if(!isPincodeVerified) return alert("Please verify your pincode destination first.");
-        
-        let userAddress = document.getElementById("addressInput").value.trim();
-        if(!userAddress) return alert("Please type your complete delivery address before placing the order.");
-
-        let finalBillAmount = document.getElementById("total").innerText.replace(/,/g, '');
-        let phone = "917702353593";
-        
-        let message = `*NEW ORDER - KIWI FASHION STORES*%0A`;
-        message += `============================%0A`;
-        cart.forEach(function(item) {
-            let itemTotal = item.product.price * item.quantity;
-            message += `• ${item.product.name} (x${item.quantity}) - ₹${itemTotal}%0A`;
-        });
-        message += `============================%0A`;
-        message += `📍 *Pincode:* ${selectedPincode}%0A`;
-        message += `🏠 *Delivery Address:* ${encodeURIComponent(userAddress)}%0A`;
-        message += `💵 *Payment Mode:* ${selectedPaymentMode}%0A%0A`;
-        message += `Subtotal: ₹${document.getElementById("subtotalVal").innerText}%0A`;
-        message += `Tax (5% GST): ₹${document.getElementById("taxVal").innerText}%0A`;
-        message += `Shipping: ${document.getElementById("shippingVal").innerText}%0A`;
-        message += `*Grand Total: ₹${document.getElementById("total").innerText}*%0A%0A`;
-
-        if(selectedPaymentMode === "UPI") {
-            let upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Kiwi%20Fashion%20Stores&am=${finalBillAmount}&cu=INR`;
-            message += `⚡ *Click Link to Pay via UPI:* ${encodeURIComponent(upiLink)}%0A`;
-        }
-
-        window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
-    }
-</script>
-
-</body>
-</html>
