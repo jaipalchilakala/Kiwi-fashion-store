@@ -130,6 +130,31 @@
             color: #1e293b;
         }
 
+        /* --- Sorting Control Module Panel --- */
+        .sorting-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .sorting-container label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .sorting-select {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            outline: none;
+            background-color: white;
+            cursor: pointer;
+        }
+
         /* --- Merchant Workspace Panels --- */
         .upload-section {
             display: none; 
@@ -165,6 +190,13 @@
         .form-group input, .form-group select {
             padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; outline: none;
         }
+        
+        .subcat-input-group {
+            display: flex;
+            gap: 8px;
+        }
+        .subcat-input-group select { flex: 1; }
+        .subcat-input-group input { flex: 1; display: none; }
 
         .btn-submit {
             background: #0f172a; color: white; padding: 14px; border-radius: 8px;
@@ -297,6 +329,7 @@
 
         /* --- Cart Matrix Layout --- */
         .cart {
+            display: none;
             background: white;
             margin: 40px auto;
             padding: 24px 16px;
@@ -385,7 +418,7 @@
     <a id="nav-home" onclick="showHome()" class="nav-active">Home</a>
     <a id="nav-women" onclick="showCategory('women')">Women</a>
     <a id="nav-kids" onclick="showCategory('kids')">Kids</a>
-    <a href="#cart" class="cart-nav-link">Cart <span class="cart-badge" id="navCartCount">0</span></a>
+    <a id="nav-cart" onclick="showCartSection()" class="cart-nav-link">Cart <span class="cart-badge" id="navCartCount">0</span></a>
 </nav>
 
 <div class="container">
@@ -402,7 +435,10 @@
             </div>
             <div class="form-group">
                 <label>Collection Category Type</label>
-                <select id="uploadSubCategory"></select>
+                <div class="subcat-input-group">
+                    <select id="uploadSubCategory" onchange="handleSubCategorySelectionChange()"></select>
+                    <input type="text" id="customSubCategory" placeholder="Type new custom category title...">
+                </div>
             </div>
             <div class="form-group">
                 <label>Product Label Title</label>
@@ -436,8 +472,7 @@
         </div>
 
         <h4>Customer Bills & Order Receipts Ledger</h4>
-        <div class="order-log-container" id="orderHistoryLedgerContainer">
-            </div>
+        <div class="order-log-container" id="orderHistoryLedgerContainer"></div>
     </div>
 
     <div id="homeView">
@@ -460,6 +495,16 @@
 
     <div id="shopView" style="display: none;">
         <div class="sub-tabs" id="subTabsContainer"></div>
+        
+        <div class="sorting-container">
+            <label for="productSortSelect">Sort By:</label>
+            <select id="productSortSelect" class="sorting-select" onchange="handleSortPreferenceChange()">
+                <option value="default">Default Order</option>
+                <option value="lowHigh">Price: Low to High</option>
+                <option value="highLow">Price: High to Low</option>
+            </select>
+        </div>
+
         <h2 id="displayTitle" class="section-title">Women's Collection</h2>
         <div class="products" id="productGrid"></div>
     </div>
@@ -515,7 +560,8 @@
     const SECRET_ACCESS_PIN = "1234";
     const MERCHANT_UPI_ID = "917702353593@ybl"; 
 
-    const structure = {
+    // Initial architectural categories
+    let structure = {
         women: ["Kurtas", "Sarees", "Tops & More", "Jeans"],
         kids: ["Party Wear", "Frocks", "Casuals"]
     };
@@ -532,6 +578,7 @@
     let dataset = [];
     let currentMainCategory = "women";
     let currentSubCategory = "All";
+    let currentSortOrder = "default";
     let cart = []; 
     let isPincodeVerified = false;
     let selectedPincode = "";
@@ -539,16 +586,26 @@
     let isMerchantModeActive = false;
 
     window.onload = function() {
+        loadStructureFromStorage();
         loadDataFromStorage();
         updateSubCategoryDropdown();
         showHome();
         updateCart();
     };
 
+    function loadStructureFromStorage() {
+        const savedStructure = localStorage.getItem('kiwi_category_structure');
+        if (savedStructure) {
+            try {
+                structure = JSON.parse(savedStructure);
+            } catch(e) {
+                console.error("Error reading collection architecture", e);
+            }
+        }
+    }
+
     function loadDataFromStorage() {
-        // Read active custom inventory extensions
         const savedProducts = localStorage.getItem('kiwi_custom_products');
-        // Read globally deleted default base keys tracking configurations
         const blacklistedIds = localStorage.getItem('kiwi_deleted_base_ids');
         let blacklist = blacklistedIds ? JSON.parse(blacklistedIds) : [];
 
@@ -569,6 +626,7 @@
     function showHome() {
         document.getElementById("homeView").style.display = "block";
         document.getElementById("shopView").style.display = "none";
+        document.getElementById("cart").style.display = "none";
         document.querySelectorAll('nav a').forEach(el => el.classList.remove('nav-active'));
         document.getElementById("nav-home").classList.add('nav-active');
         window.scrollTo(0,0);
@@ -579,6 +637,7 @@
         currentSubCategory = "All"; 
         document.getElementById("homeView").style.display = "none";
         document.getElementById("shopView").style.display = "block";
+        document.getElementById("cart").style.display = "none";
         document.querySelectorAll('nav a').forEach(el => el.classList.remove('nav-active'));
         document.getElementById(`nav-${mainCat}`).classList.add('nav-active');
         document.getElementById("displayTitle").innerText = `${mainCat.charAt(0).toUpperCase() + mainCat.slice(1)}'s Collection`;
@@ -588,18 +647,26 @@
         window.scrollTo(0,0);
     }
 
+    function showCartSection() {
+        document.getElementById("homeView").style.display = "none";
+        document.getElementById("shopView").style.display = "none";
+        document.getElementById("cart").style.display = "block";
+        document.querySelectorAll('nav a').forEach(el => el.classList.remove('nav-active'));
+        document.getElementById("nav-cart").classList.add('nav-active');
+        window.scrollTo(0,0);
+    }
+
     function unlockMerchantWorkspace() {
         let entryPrompt = prompt("Access Restricted. Enter Merchant Pin:");
         if (entryPrompt === SECRET_ACCESS_PIN) {
             isMerchantModeActive = true;
             document.getElementById("merchantPanel").style.display = "block";
             renderMerchantAnalyticsDashboard();
-            renderProducts(); // Refresh layouts to inject live action deletion tags
+            renderProducts(); 
             document.getElementById("merchantPanel").scrollIntoView({ behavior: 'smooth' });
         }
     }
 
-    // New API Strategy: Category Wise Order Matrix Calculation Engine
     function renderMerchantAnalyticsDashboard() {
         let savedOrdersRaw = localStorage.getItem('kiwi_sales_ledger');
         let logs = savedOrdersRaw ? JSON.parse(savedOrdersRaw) : [];
@@ -647,11 +714,9 @@
         document.getElementById("statKidsCount").innerText = `${kidsProductsUnitsSold} Unit(s)`;
     }
 
-    // New API Strategy: Delete items globally from system runtime configuration pipeline
     function removeProductFromWebsite(itemId) {
         if(!confirm("Are you sure you want to permanently delete this product from the website?")) return;
 
-        // Check if item is inside the uploaded custom items storage array
         let savedProducts = localStorage.getItem('kiwi_custom_products');
         let customArray = savedProducts ? JSON.parse(savedProducts) : [];
         let hasCustomMatch = customArray.some(item => item.id === itemId);
@@ -660,7 +725,6 @@
             customArray = customArray.filter(item => item.id !== itemId);
             localStorage.setItem('kiwi_custom_products', JSON.stringify(customArray));
         } else {
-            // It belongs to the baseline asset list. Blacklist the runtime index target mapping ID
             let blacklistedIds = localStorage.getItem('kiwi_deleted_base_ids');
             let blacklist = blacklistedIds ? JSON.parse(blacklistedIds) : [];
             if(!blacklist.includes(itemId)) {
@@ -672,16 +736,31 @@
         alert("Product wiped successfully.");
         loadDataFromStorage();
         renderProducts();
-        renderMerchantAnalyticsDashboard(); // Recalculate metrics
+        if(isMerchantModeActive) renderMerchantAnalyticsDashboard();
     }
 
     function updateSubCategoryDropdown() {
         const mainVal = document.getElementById("uploadMainCategory").value;
         const subDropdown = document.getElementById("uploadSubCategory");
         subDropdown.innerHTML = "";
+        
         structure[mainVal].forEach(subCat => {
             subDropdown.innerHTML += `<option value="${subCat}">${subCat}</option>`;
         });
+        subDropdown.innerHTML += `<option value="NEW_CUSTOM_VAL">+ Add Custom Category...</option>`;
+        handleSubCategorySelectionChange();
+    }
+
+    function handleSubCategorySelectionChange() {
+        const subDropdown = document.getElementById("uploadSubCategory");
+        const customInput = document.getElementById("customSubCategory");
+        if(subDropdown.value === "NEW_CUSTOM_VAL") {
+            customInput.style.display = "block";
+            customInput.focus();
+        } else {
+            customInput.style.display = "none";
+            customInput.value = "";
+        }
     }
 
     function generateSubTabs() {
@@ -701,23 +780,37 @@
         renderProducts(); 
     }
 
+    function handleSortPreferenceChange() {
+        currentSortOrder = document.getElementById("productSortSelect").value;
+        renderProducts();
+    }
+
     function renderProducts() {
         const grid = document.getElementById("productGrid");
         grid.innerHTML = "";
+        
         let filtered = dataset.filter(item => item.main === currentMainCategory);
-        if (currentSubCategory !== "All") filtered = filtered.filter(item => item.sub === currentSubCategory);
+        if (currentSubCategory !== "All") {
+            filtered = filtered.filter(item => item.sub === currentSubCategory);
+        }
+
+        // Apply Sorting preferences logic
+        if (currentSortOrder === "lowHigh") {
+            filtered.sort((a, b) => a.price - b.price);
+        } else if (currentSortOrder === "highLow") {
+            filtered.sort((a, b) => b.price - a.price);
+        }
 
         if(filtered.length === 0) {
-            grid.innerHTML = `<div class="no-items">No tailored styles found in this subcategory yet.</div>`;
+            grid.innerHTML = `<div class="no-items">No tailored styles found in this category yet.</div>`;
             return;
         }
 
         filtered.forEach(item => {
-            let showDeleteStyle = isMerchantModeActive ? "display: block;" : "display: none;";
-            
+            let deleteBadgeStyle = isMerchantModeActive ? 'style="display: block;"' : '';
             grid.innerHTML += `
                 <div class="card">
-                    <button class="merchant-delete-badge" style="${showDeleteStyle}" onclick="removeProductFromWebsite(${item.id})">Delete Item 🗑️</button>
+                    <button class="merchant-delete-badge" ${deleteBadgeStyle} onclick="event.stopPropagation(); removeProductFromWebsite(${item.id})">Wipe Item 🗑️</button>
                     <div class="image-container"><img src="${item.img}" alt="${item.name}"></div>
                     <div class="card-content">
                         <h3>${item.name}</h3>
@@ -767,6 +860,7 @@
         if (itemIndex === -1) return;
 
         cart[itemIndex].quantity += direction;
+        
         if (cart[itemIndex].quantity < 1) {
             removeCartItemRow(itemId);
         } else {
@@ -854,36 +948,51 @@
         const name = document.getElementById("uploadName").value.trim();
         const price = parseInt(document.getElementById("uploadPrice").value);
         const main = document.getElementById("uploadMainCategory").value;
-        const sub = document.getElementById("uploadSubCategory").value;
+        const dropdownSub = document.getElementById("uploadSubCategory").value;
+        const customSub = document.getElementById("customSubCategory").value.trim();
         const imgFile = document.getElementById("uploadImage").files[0];
 
-        if(!name || !price || !imgFile) return alert("Complete all fields first.");
+        let finalSubCategory = dropdownSub;
+        if(dropdownSub === "NEW_CUSTOM_VAL") {
+            if(!customSub) return alert("Please specify a custom category title layout.");
+            finalSubCategory = customSub;
+            
+            // Push custom collection category live into standard list arrays architecture
+            if(!structure[main].includes(finalSubCategory)) {
+                structure[main].push(finalSubCategory);
+                localStorage.setItem('kiwi_category_structure', JSON.stringify(structure));
+            }
+        }
+
+        if(!name || !price || !imgFile) return alert("Complete all variables first.");
 
         const reader = new FileReader();
         reader.onload = function(e) {
             let savedProducts = localStorage.getItem('kiwi_custom_products');
             let customArray = savedProducts ? JSON.parse(savedProducts) : [];
-            
-            const newItem = { 
-                id: Date.now(), 
-                main, 
-                sub, 
-                name, 
-                price, 
+
+            const newProduct = { 
+                id: Date.now(), // Generate safe unique timestamps ID codes
+                main: main, 
+                sub: finalSubCategory, 
+                name: name, 
+                price: price, 
                 img: e.target.result 
             };
 
-            customArray.unshift(newItem);
+            customArray.unshift(newProduct);
             localStorage.setItem('kiwi_custom_products', JSON.stringify(customArray));
-
-            alert("Product published and securely stored locally!");
             
-            loadDataFromStorage();
-            showCategory(main);
+            alert("Product published completely.");
             
+            // Clean interface states back out
             document.getElementById("uploadName").value = "";
             document.getElementById("uploadPrice").value = "";
             document.getElementById("uploadImage").value = "";
+            
+            loadDataFromStorage();
+            updateSubCategoryDropdown();
+            showCategory(main);
         };
         reader.readAsDataURL(imgFile);
     }
@@ -894,62 +1003,63 @@
         
         let userAddress = document.getElementById("addressInput").value.trim();
         if(!userAddress) return alert("Please type your complete delivery address before placing the order.");
+        
+        // Generate a unique 6-digit Order ID
+        let newOrderId = Math.floor(100000 + Math.random() * 900000);
+        let timestampStr = new Date().toLocaleString('en-IN');
+    	let salesHistoryItemsLog = [];
 
         let finalBillAmount = document.getElementById("total").innerText.replace(/,/g, '');
         let phone = "917702353593";
         
-        // --- Core Internal System Logging Upgrade ---
-        let itemsTrackerArray = [];
-        let whatsappOrderTextLines = "";
+        // 1. Build the message using \n for new lines
+    	let message = `*NEW ORDER - KIWI FASHION STORES*\n`;
+    	message += `*Order ID: #${newOrderId}*\n`;
+    	message += `============================\n`;
+    
+    	cart.forEach(function(item) {
+        	let itemTotal = item.product.price * item.quantity;
+        	message += `• ${item.product.name} (x${item.quantity}) - ₹${itemTotal}\n`;
         
-        cart.forEach(function(item) {
-            let itemTotal = item.product.price * item.quantity;
-            whatsappOrderTextLines += `• ${item.product.name} (x${item.quantity}) - ₹${itemTotal}%0A`;
-            
-            // Log category properties
-            itemsTrackerArray.push({
-                name: item.product.name,
-                qty: item.quantity,
-                price: item.product.price,
-                catMain: item.product.main
-            });
-        });
+        	salesHistoryItemsLog.push({
+            		name: item.product.name,
+            		qty: item.quantity,
+            		price: item.product.price,
+            		catMain: item.product.main
+        	});
+    	});
+    
+    	message += `============================\n`;
+    	message += `📍 *Pincode:* ${selectedPincode}\n`;
+    	message += `🏠 *Delivery Address:* ${userAddress}\n`;
+    	message += `💵 *Payment Mode:* ${selectedPaymentMode}\n\n`;
+    	message += `Subtotal: ₹${document.getElementById("subtotalVal").innerText}\n`;
+    	message += `Tax (5% GST): ₹${document.getElementById("taxVal").innerText}\n`;
+    	message += `Shipping: ${document.getElementById("shippingVal").innerText}\n`;
+    	message += `*Grand Total: ₹${document.getElementById("total").innerText}*\n\n`;
 
-        // Pack order object to save history metrics locally
-        let orderReceiptObject = {
-            orderId: Math.floor(100000 + Math.random() * 900000),
-            timestamp: new Date().toLocaleString('en-IN'),
-            pincode: selectedPincode,
-            address: userAddress,
-            paymentMode: selectedPaymentMode,
-            purchasedItems: itemsTrackerArray,
-            grandTotalBill: parseInt(finalBillAmount)
-        };
+    	if(selectedPaymentMode === "UPI") {
+        	let upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Kiwi%20Fashion%20Stores&am=${finalBillAmount}&cu=INR`;
+        	message += `⚡ *Click Link to Pay via UPI:* ${upiLink}\n`;
+    	}
 
-        let savedOrdersRaw = localStorage.getItem('kiwi_sales_ledger');
-        let orderLogHistoryArray = savedOrdersRaw ? JSON.parse(savedOrdersRaw) : [];
-        orderLogHistoryArray.unshift(orderReceiptObject);
-        localStorage.setItem('kiwi_sales_ledger', JSON.stringify(orderLogHistoryArray));
-        // ---------------------------------------------
+    	// 2. Save to Ledger
+    	let savedOrdersRaw = localStorage.getItem('kiwi_sales_ledger');
+    	let ledgerLogs = savedOrdersRaw ? JSON.parse(savedOrdersRaw) : [];
+    	ledgerLogs.unshift({
+        	orderId: newOrderId,
+        	timestamp: timestampStr,
+        	grandTotalBill: parseInt(finalBillAmount),
+        	paymentMode: selectedPaymentMode,
+        	pincode: selectedPincode,
+        	address: userAddress,
+        	purchasedItems: salesHistoryItemsLog
+    	});
+    	localStorage.setItem('kiwi_sales_ledger', JSON.stringify(ledgerLogs));
 
-        let message = `*NEW ORDER - KIWI FASHION STORES*%0A`;
-        message += `============================%0A`;
-        message += whatsappOrderTextLines;
-        message += `============================%0A`;
-        message += `📍 *Pincode:* ${selectedPincode}%0A`;
-        message += `🏠 *Delivery Address:* ${encodeURIComponent(userAddress)}%0A`;
-        message += `💵 *Payment Mode:* ${selectedPaymentMode}%0A%0A`;
-        message += `Subtotal: ₹${document.getElementById("subtotalVal").innerText}%0A`;
-        message += `Tax (5% GST): ₹${document.getElementById("taxVal").innerText}%0A`;
-        message += `Shipping: ${document.getElementById("shippingVal").innerText}%0A`;
-        message += `*Grand Total: ₹${document.getElementById("total").innerText}*%0A%0A`;
-
-        if(selectedPaymentMode === "UPI") {
-            let upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Kiwi%20Fashion%20Stores&am=${finalBillAmount}&cu=INR`;
-            message += `⚡ *Click Link to Pay via UPI:* ${encodeURIComponent(upiLink)}%0A`;
-        }
-
-        window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
+    	// 3. ENCODE THE ENTIRE MESSAGE AND OPEN
+    	let whatsappURL = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+    	window.open(whatsappURL, "_blank");
     }
 </script>
 
