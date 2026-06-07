@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiwi Fashion Stores</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -42,25 +41,6 @@
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-        }
-
-        .hero-banner::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(254,205,211,0.4) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .hero-banner-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .hero-banner h1 {
@@ -148,15 +128,6 @@
             color: #1e293b;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background: var(--primary);
-            margin: 10px auto 0 auto;
-        }
-
         /* --- Merchant Workspace --- */
         .upload-section {
             display: none; 
@@ -220,7 +191,7 @@
             background: #fff1f2; padding: 8px 20px; border-radius: 30px;
         }
 
-        /* --- Product Grid --- */
+        /* --- Product Grid & Sub Tabs --- */
         .sub-tabs { display: flex; justify-content: center; gap: 14px; margin-bottom: 45px; flex-wrap: wrap; }
         .tab { padding: 12px 28px; background: white; border: 1px solid #e2e8f0; border-radius: 40px; font-weight: 600; cursor: pointer; }
         .tab.active { background: #0f172a; color: white; border-color: #0f172a; }
@@ -230,15 +201,43 @@
         .image-container { position: relative; padding-top: 130%; background: #f8fafc; }
         .image-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
         .card-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
-        .price { font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; margin-top: auto; }
+        .price { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: auto; }
         
+        /* Product Quantity Selector Component */
+        .qty-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 6px;
+            margin-bottom: 12px;
+        }
+        .qty-btn {
+            background: white;
+            border: 1px solid #cbd5e1;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .qty-btn:hover { background: var(--primary-accent); color: var(--primary); border-color: var(--primary); }
+        .qty-val { font-weight: 700; font-size: 1rem; min-width: 20px; text-align: center; }
+
         .btn-add-cart {
             width: 100%; padding: 14px; border: 1px solid #e2e8f0; background: white;
             color: #0f172a; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
         }
         .card:hover .btn-add-cart { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* --- Advanced Checkout & Pincode Module --- */
+        /* --- Cart Layout & Advanced Panel --- */
         .cart {
             background: white;
             margin: 80px auto;
@@ -250,18 +249,32 @@
         }
 
         .cart h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 16px; }
-        .cart ul li { padding: 14px 0; border-bottom: 1px dashed #e2e8f0; display: flex; justify-content: space-between; font-weight: 500; }
         
+        /* Modern Cart Rows */
+        .cart-item-row {
+            padding: 16px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-item-info { display: flex; flex-direction: column; gap: 4px; }
+        .cart-item-name { font-weight: 600; color: #1e293b; }
+        .cart-item-meta { font-size: 0.85rem; color: var(--text-muted); }
+        .cart-item-right { display: flex; align-items: center; gap: 20px; }
+        .cart-item-price { font-weight: 700; color: #0f172a; }
+        .btn-remove-item {
+            background: none; border: none; color: #ef4444; font-weight: 600;
+            font-size: 0.85rem; cursor: pointer; padding: 4px 8px; border-radius: 6px;
+        }
+        .btn-remove-item:hover { background: #fef2f2; }
+
         .breakdown-row {
             display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.95rem; margin-top: 10px;
         }
 
         .pincode-box {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 14px;
-            margin-bottom: 25px;
-            border: 1px solid #e2e8f0;
+            background: #f8fafc; padding: 20px; border-radius: 14px; margin-bottom: 25px; border: 1px solid #e2e8f0; margin-top: 25px;
         }
         .pincode-box label { font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 8px; }
         .pincode-row { display: flex; gap: 10px; }
@@ -295,6 +308,8 @@
             .hero-banner h1 { font-size: 2.6rem; }
             .categories { grid-template-columns: 1fr; }
             .methods-grid { grid-template-columns: 1fr; }
+            .cart-item-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .cart-item-right { width: 100%; justify-content: space-between; }
         }
     </style>
 </head>
@@ -319,7 +334,6 @@
 
 <div class="container">
 
-    <!-- Merchant Workspace Panel -->
     <div class="upload-section" id="merchantPanel">
         <h3>✨ Merchant Workspace: Add New Catalog Item</h3>
         <div class="form-grid">
@@ -350,7 +364,6 @@
         <button class="btn-submit" onclick="handleMerchantUpload()" style="margin-top: 15px;">Publish Item Live</button>
     </div>
 
-    <!-- Home Page Portal Display -->
     <div id="homeView">
         <h2 class="section-title">Select Department</h2>
         <div class="categories">
@@ -369,21 +382,17 @@
         </div>
     </div>
 
-    <!-- Shop Workspace view -->
     <div id="shopView" style="display: none;">
         <div class="sub-tabs" id="subTabsContainer"></div>
         <h2 id="displayTitle" class="section-title">Women's Collection</h2>
         <div class="products" id="productGrid"></div>
     </div>
 
-    <!-- Retail Shopping Cart Interface Panel -->
     <div id="cart" class="cart">
         <h2>🛒 Your Shopping Cart</h2>
-        <ul id="cartItems">
-            <li style="color: var(--text-muted); border: none; justify-content: center; font-size: 0.95rem;">Your shopping cart is currently empty</li>
-        </ul>
+        <div id="cartItemsContainer">
+            </div>
 
-        <!-- Pincode Availability Module -->
         <div class="pincode-box">
             <label>📍 Check Delivery Availability</label>
             <div class="pincode-row">
@@ -393,7 +402,6 @@
             <div id="pincodeStatus" class="pincode-status"></div>
         </div>
 
-        <!-- Payment Method Choice Module -->
         <div class="payment-methods">
             <label>💳 Select Payment Mode Preference</label>
             <div class="methods-grid">
@@ -402,7 +410,6 @@
             </div>
         </div>
 
-        <!-- Financial Breakdown Ledger -->
         <div class="breakdown-row"><span>Items Subtotal:</span><span>₹<span id="subtotalVal">0</span></span></div>
         <div class="breakdown-row"><span>Estimated Tax (5% GST):</span><span>₹<span id="taxVal">0</span></span></div>
         <div class="breakdown-row"><span>Shipping Charges:</span><span><span id="shippingVal">₹0</span></span></div>
@@ -426,7 +433,7 @@
 
 <script>
     const SECRET_ACCESS_PIN = "1234";
-    const MERCHANT_UPI_ID = "917702353593@ybl"; // Replace this with your actual structural UPI VPA ID handle!
+    const MERCHANT_UPI_ID = "917702353593@ybl"; 
 
     const structure = {
         women: ["Kurtas", "Sarees", "Tops & More", "Jeans"],
@@ -437,12 +444,15 @@
         { id: 1, main: "women", sub: "Sarees", name: "Premium Designer Silk Saree", price: 1899, img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80" },
         { id: 2, main: "women", sub: "Tops & More", name: "Stylish Linen Casual Top", price: 499, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" },
         { id: 3, main: "women", sub: "Kurtas", name: "Floral Summer Pure Kurti", price: 799, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" },
-        { id: 4, main: "women", sub: "Jeans", name: "High-Waist Comfort Fit Denim", price: 1199, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80" }
+        { id: 4, main: "women", sub: "Jeans", name: "High-Waist Comfort Fit Denim", price: 1199, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80" },
+        // Restored Kids Collection Items
+        { id: 5, main: "kids", sub: "Party Wear", name: "Kids Premium Sparkle Gown", price: 999, img: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=500&q=80" },
+        { id: 6, main: "kids", sub: "Frocks", name: "Casual Cotton Everyday Frock", price: 399, img: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" }
     ];
 
     let currentMainCategory = "women";
     let currentSubCategory = "All";
-    let cart = [];
+    let cart = []; // Array of objects: { productObject, quantity }
     let isPincodeVerified = false;
     let selectedPincode = "";
     let selectedPaymentMode = "UPI";
@@ -450,6 +460,7 @@
     window.onload = function() {
         updateSubCategoryDropdown();
         showHome();
+        updateCart();
     };
 
     function showHome() {
@@ -513,123 +524,12 @@
         let filtered = dataset.filter(item => item.main === currentMainCategory);
         if (currentSubCategory !== "All") filtered = filtered.filter(item => item.sub === currentSubCategory);
 
+        if(filtered.length === 0) {
+            grid.innerHTML = `<div class="no-items">No tailored styles found in this layout subcategory yet.</div>`;
+            return;
+        }
+
         filtered.forEach(item => {
             grid.innerHTML += `
                 <div class="card">
-                    <div class="image-container"><img src="${item.img}" alt="${item.name}"></div>
-                    <div class="card-content">
-                        <h3>${item.name}</h3>
-                        <p class="price">₹${item.price.toLocaleString('en-IN')}</p>
-                        <button class="btn-add-cart" onclick="addToCart('${item.name}', ${item.price})">Add To Cart</button>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    function handleMerchantUpload() {
-        const name = document.getElementById("uploadName").value.trim();
-        const price = parseInt(document.getElementById("uploadPrice").value);
-        const main = document.getElementById("uploadMainCategory").value;
-        const sub = document.getElementById("uploadSubCategory").value;
-        const imgFile = document.getElementById("uploadImage").files[0];
-
-        if(!name || !price || !imgFile) return alert("Complete all variables first.");
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            dataset.unshift({ id: dataset.length + 1, main, sub, name, price, img: e.target.result });
-            alert("Product published completely.");
-            showCategory(main);
-        };
-        reader.readAsDataURL(imgFile);
-    }
-
-    function addToCart(product, price) {
-        cart.push({ product: product, price: price });
-        updateCart();
-    }
-
-    function selectPayment(mode) {
-        selectedPaymentMode = mode;
-        document.getElementById("payUPI").classList.toggle("selected", mode === "UPI");
-        document.getElementById("payCOD").classList.toggle("selected", mode === "COD");
-    }
-
-    function checkPincode() {
-        let pin = document.getElementById("pincodeInput").value.trim();
-        let status = document.getElementById("pincodeStatus");
-        
-        if(pin.length === 6 && !isNaN(pin)) {
-            isPincodeVerified = true;
-            selectedPincode = pin;
-            status.style.display = "block";
-            status.style.color = "#16a34a";
-            status.innerText = "✓ Serviceable Location! Standard delivery available.";
-            updateCart(); // Refresh delivery parameters
-        } else {
-            isPincodeVerified = false;
-            status.style.display = "block";
-            status.style.color = "#dc2626";
-            status.innerText = "✕ Please enter a valid 6-digit Indian postal code.";
-        }
-    }
-
-    function updateCart() {
-        let cartItems = document.getElementById("cartItems");
-        let subtotal = 0;
-        cartItems.innerHTML = "";
-        document.getElementById("navCartCount").innerText = cart.length;
-
-        if (cart.length === 0) {
-            cartItems.innerHTML = `<li style="color: var(--text-muted); border: none; justify-content: center; font-size: 0.95rem;">Your shopping cart is currently empty</li>`;
-        } else {
-            cart.forEach(function(item) {
-                cartItems.innerHTML += `<li><span>${item.product}</span><span>₹${item.price.toLocaleString('en-IN')}</span></li>`;
-                subtotal += item.price;
-            });
-        }
-
-        // Financial Algorithms Calculations
-        let tax = Math.round(subtotal * 0.05); // 5% GST calculated instantly
-        let shipping = (subtotal > 0 && subtotal < 999) ? 60 : 0; // Free shipping threshold variant rule
-        let overallTotal = subtotal + tax + shipping;
-
-        document.getElementById("subtotalVal").innerText = subtotal.toLocaleString('en-IN');
-        document.getElementById("taxVal").innerText = tax.toLocaleString('en-IN');
-        document.getElementById("shippingVal").innerText = shipping === 0 ? "FREE" : "₹" + shipping;
-        document.getElementById("total").innerText = overallTotal.toLocaleString('en-IN');
-    }
-
-    function checkoutWhatsApp() {
-        if(cart.length === 0) return alert("Please add item sets to checkout.");
-        if(!isPincodeVerified) return alert("Please complete destination pincode validation before submitting order request.");
-
-        let finalBillAmount = document.getElementById("total").innerText.replace(/,/g, '');
-        let phone = "917702353593";
-        
-        let message = `*NEW ORDER INCOMING - KIWI FASHION STORES*%0A`;
-        message += `============================%0A`;
-        cart.forEach(function(item) {
-            message += `• ${item.product} - ₹${item.price}%0A`;
-        });
-        message += `============================%0A`;
-        message += `📍 *Delivery Pincode:* ${selectedPincode}%0A`;
-        message += `💵 *Payment Mode Selection:* ${selectedPaymentMode}%0A%0A`;
-        message += `Items Subtotal: ₹${document.getElementById("subtotalVal").innerText}%0A`;
-        message += `Tax (5% GST): ₹${document.getElementById("taxVal").innerText}%0A`;
-        message += `Shipping Charge: ${document.getElementById("shippingVal").innerText}%0A`;
-        message += `*Grand Total Invoice: ₹${document.getElementById("total").innerText}*%0A%0A`;
-
-        if(selectedPaymentMode === "UPI") {
-            // Built standard fast deep link for UPI application environments
-            let upiLink = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=Kiwi%20Fashion%20Stores&am=${finalBillAmount}&cu=INR`;
-            message += `⚡ *Click Link to Pay Instantly via UPI:* ${encodeURIComponent(upiLink)}%0A`;
-        }
-
-        window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
-    }
-</script>
-
-</body>
-</html>
+                    <div class="
