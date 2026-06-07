@@ -6,7 +6,7 @@
     <title>Kiwi Fashion Stores</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&family=Playfair+Display:ital,wght=0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -130,7 +130,7 @@
             color: #1e293b;
         }
 
-        /* --- Merchant Workspace Panels --- */
+        /* --- Merchant Workspace --- */
         .upload-section {
             display: none; 
             background: #ffffff;
@@ -138,7 +138,7 @@
             border-radius: 16px;
             padding: 20px;
             margin: 24px auto;
-            max-width: 900px;
+            max-width: 800px;
             box-shadow: var(--card-shadow);
         }
 
@@ -171,12 +171,12 @@
             font-weight: 600; cursor: pointer; width: 100%; border: none; font-size: 0.95rem;
         }
 
-        /* Analytics Specific Styles */
+        /* Analytics Scorecard Matrix Grid */
         .analytics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
-            margin-bottom: 24px;
+            margin: 15px 0 24px 0;
         }
 
         .metric-card {
@@ -188,14 +188,15 @@
         }
 
         .metric-card h4 { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
-        .metric-card p { font-size: 1.6rem; font-weight: 700; color: #0f172a; }
+        .metric-card p { font-size: 1.5rem; font-weight: 700; color: #0f172a; }
 
         .order-log-container {
-            max-height: 350px;
+            max-height: 300px;
             overflow-y: auto;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             background: #f8fafc;
+            margin-top: 10px;
         }
 
         .order-log-card {
@@ -205,7 +206,7 @@
             font-size: 0.9rem;
         }
         .order-log-card:last-child { border-bottom: none; }
-        .order-meta-header { display: flex; justify-content: space-between; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+        .order-meta-header { display: flex; justify-content: space-between; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
         .order-items-list { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; padding-left: 14px; }
 
         /* --- Department Portal Gateways --- */
@@ -284,7 +285,7 @@
         }
         .card:hover .btn-add-cart, .btn-add-cart:active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Permanent Workspace Delete System Action Elements */
+        /* Live Deletion Badges style layout */
         .merchant-delete-badge {
             display: none; position: absolute; top: 12px; right: 12px; background: rgba(239, 68, 68, 0.95);
             color: white; border: none; padding: 6px 12px; border-radius: 30px; font-size: 0.75rem;
@@ -295,7 +296,7 @@
 
         .no-items { grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px 16px; font-size: 1rem; }
 
-        /* --- Cart Matrix Layout --- */
+        /* --- Upgraded Cart Matrix Sheet Layout --- */
         .cart {
             background: white;
             margin: 40px auto;
@@ -308,6 +309,7 @@
 
         .cart h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
         
+        /* Optimized Mobile Cart Structure rows */
         .cart-item-row {
             padding: 14px 0;
             border-bottom: 1px dashed #e2e8f0;
@@ -335,6 +337,7 @@
 
         .breakdown-row { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; }
 
+        /* General Module Form Blocks */
         .form-block-box { background: #f8fafc; padding: 16px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #e2e8f0; }
         .form-block-box label { font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 6px; color: #1e293b; }
         
@@ -343,6 +346,7 @@
         .btn-verify { background: #0f172a; color: white; border: none; padding: 0 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
         .pincode-status { font-size: 0.8rem; font-weight: 600; margin-top: 6px; display: none; }
 
+        /* Full Address Field Setup */
         .address-box textarea {
             width: 100%; height: 75px; padding: 10px; border: 1px solid #cbd5e1;
             border-radius: 6px; font-size: 0.95rem; outline: none; resize: none;
@@ -419,7 +423,7 @@
         </div>
         <button class="btn-submit" onclick="handleMerchantUpload()" style="margin-top: 10px;">Publish Item Live</button>
 
-        <h3 style="margin-top: 40px;">📊 Sales & Order Analytics Dashboard</h3>
+        <h3 style="margin-top: 35px;">📊 Sales & Order Analytics Dashboard</h3>
         <div class="analytics-grid">
             <div class="metric-card">
                 <h4>Total Revenue Logged</h4>
@@ -436,8 +440,7 @@
         </div>
 
         <h4>Customer Bills & Order Receipts Ledger</h4>
-        <div class="order-log-container" id="orderHistoryLedgerContainer">
-            </div>
+        <div class="order-log-container" id="orderHistoryLedgerContainer"></div>
     </div>
 
     <div id="homeView">
@@ -466,7 +469,8 @@
 
     <div id="cart" class="cart">
         <h2>🛒 Your Shopping Cart</h2>
-        <div id="cartItemsContainer"></div>
+        <div id="cartItemsContainer">
+            </div>
 
         <div class="form-block-box">
             <label>📍 Check Delivery Availability</label>
@@ -502,7 +506,7 @@
 </div>
 
 <div class="social">
-    <a href="https://instagram.com/chjaipalreddy" target="_blank">
+    <a href="https://instagram.com/kiwi_fashions" target="_blank">
         📸 Follow @KiwiFashionStores on Instagram
     </a>
 </div>
@@ -525,262 +529,4 @@
         { id: 2, main: "women", sub: "Tops & More", name: "Stylish Linen Casual Top", price: 499, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" },
         { id: 3, main: "women", sub: "Kurtas", name: "Floral Summer Pure Kurti", price: 799, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" },
         { id: 4, main: "women", sub: "Jeans", name: "High-Waist Comfort Fit Denim", price: 1199, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80" },
-        { id: 5, main: "kids", sub: "Party Wear", name: "Kids Premium Sparkle Gown", price: 999, img: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=500&q=80" },
-        { id: 6, main: "kids", sub: "Frocks", name: "Casual Cotton Everyday Frock", price: 399, img: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=500&q=80" }
-    ];
-
-    let dataset = [];
-    let currentMainCategory = "women";
-    let currentSubCategory = "All";
-    let cart = []; 
-    let isPincodeVerified = false;
-    let selectedPincode = "";
-    let selectedPaymentMode = "UPI";
-    let isMerchantModeActive = false;
-
-    window.onload = function() {
-        loadDataFromStorage();
-        updateSubCategoryDropdown();
-        showHome();
-        updateCart();
-    };
-
-    function loadDataFromStorage() {
-        // Read active custom inventory extensions
-        const savedProducts = localStorage.getItem('kiwi_custom_products');
-        // Read globally deleted default base keys tracking configurations
-        const blacklistedIds = localStorage.getItem('kiwi_deleted_base_ids');
-        let blacklist = blacklistedIds ? JSON.parse(blacklistedIds) : [];
-
-        let baseArray = initialDataset.filter(item => !blacklist.includes(item.id));
-
-        if (savedProducts) {
-            try {
-                const parsed = JSON.parse(savedProducts);
-                dataset = [...parsed, ...baseArray];
-            } catch(e) {
-                dataset = [...baseArray];
-            }
-        } else {
-            dataset = [...baseArray];
-        }
-    }
-
-    function showHome() {
-        document.getElementById("homeView").style.display = "block";
-        document.getElementById("shopView").style.display = "none";
-        document.querySelectorAll('nav a').forEach(el => el.classList.remove('nav-active'));
-        document.getElementById("nav-home").classList.add('nav-active');
-        window.scrollTo(0,0);
-    }
-
-    function showCategory(mainCat) {
-        currentMainCategory = mainCat;
-        currentSubCategory = "All"; 
-        document.getElementById("homeView").style.display = "none";
-        document.getElementById("shopView").style.display = "block";
-        document.querySelectorAll('nav a').forEach(el => el.classList.remove('nav-active'));
-        document.getElementById(`nav-${mainCat}`).classList.add('nav-active');
-        document.getElementById("displayTitle").innerText = `${mainCat.charAt(0).toUpperCase() + mainCat.slice(1)}'s Collection`;
-        
-        generateSubTabs();
-        renderProducts(); 
-        window.scrollTo(0,0);
-    }
-
-    function unlockMerchantWorkspace() {
-        let entryPrompt = prompt("Access Restricted. Enter Merchant Pin:");
-        if (entryPrompt === SECRET_ACCESS_PIN) {
-            isMerchantModeActive = true;
-            document.getElementById("merchantPanel").style.display = "block";
-            renderMerchantAnalyticsDashboard();
-            renderProducts(); // Refresh layouts to inject live action deletion tags
-            document.getElementById("merchantPanel").scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // New API Strategy: Category Wise Order Matrix Calculation Engine
-    function renderMerchantAnalyticsDashboard() {
-        let savedOrdersRaw = localStorage.getItem('kiwi_sales_ledger');
-        let logs = savedOrdersRaw ? JSON.parse(savedOrdersRaw) : [];
-
-        let runningRevenueSum = 0;
-        let womenProductsUnitsSold = 0;
-        let kidsProductsUnitsSold = 0;
-
-        let ledgerContainer = document.getElementById("orderHistoryLedgerContainer");
-        ledgerContainer.innerHTML = "";
-
-        if(logs.length === 0) {
-            ledgerContainer.innerHTML = `<div style="padding: 20px; text-align: center; color: var(--text-muted);">No sales invoices logged yet.</div>`;
-        } else {
-            logs.forEach(order => {
-                runningRevenueSum += parseInt(order.grandTotalBill);
-                
-                let orderItemsRowsText = "";
-                order.purchasedItems.forEach(u => {
-                    if(u.catMain === "women") womenProductsUnitsSold += u.qty;
-                    if(u.catMain === "kids") kidsProductsUnitsSold += u.qty;
-                    orderItemsRowsText += `<li>${u.name} (x${u.qty}) - ₹${u.price * u.qty}</li>`;
-                });
-
-                ledgerContainer.innerHTML += `
-                    <div class="order-log-card">
-                        <div class="order-meta-header">
-                            <span>Order #${order.orderId}</span>
-                            <span style="color: var(--primary);">₹${order.grandTotalBill.toLocaleString('en-IN')}</span>
-                        </div>
-                        <div style="font-size: 0.8rem; margin-bottom: 4px; color: #64748b;">
-                            📅 Date: ${order.timestamp} | 💳 Pay Mode: ${order.paymentMode} | 📍 Pin: ${order.pincode}
-                        </div>
-                        <ul class="order-items-list">${orderItemsRowsText}</ul>
-                        <div style="font-size: 0.8rem; background: #f1f5f9; padding: 6px; border-radius: 4px; word-break: break-all;">
-                            <strong>Delivery Address:</strong> ${order.address}
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        document.getElementById("statRevenue").innerText = runningRevenueSum.toLocaleString('en-IN');
-        document.getElementById("statWomenCount").innerText = `${womenProductsUnitsSold} Unit(s)`;
-        document.getElementById("statKidsCount").innerText = `${kidsProductsUnitsSold} Unit(s)`;
-    }
-
-    // New API Strategy: Delete items globally from system runtime configuration pipeline
-    function removeProductFromWebsite(itemId) {
-        if(!confirm("Are you sure you want to permanently delete this product from the website?")) return;
-
-        // Check if item is inside the uploaded custom items storage array
-        let savedProducts = localStorage.getItem('kiwi_custom_products');
-        let customArray = savedProducts ? JSON.parse(savedProducts) : [];
-        let hasCustomMatch = customArray.some(item => item.id === itemId);
-
-        if(hasCustomMatch) {
-            customArray = customArray.filter(item => item.id !== itemId);
-            localStorage.setItem('kiwi_custom_products', JSON.stringify(customArray));
-        } else {
-            // It belongs to the baseline asset list. Blacklist the runtime index target mapping ID
-            let blacklistedIds = localStorage.getItem('kiwi_deleted_base_ids');
-            let blacklist = blacklistedIds ? JSON.parse(blacklistedIds) : [];
-            if(!blacklist.includes(itemId)) {
-                blacklist.push(itemId);
-                localStorage.setItem('kiwi_deleted_base_ids', JSON.stringify(blacklist));
-            }
-        }
-
-        alert("Product wiped successfully.");
-        loadDataFromStorage();
-        renderProducts();
-        renderMerchantAnalyticsDashboard(); // Recalculate metrics
-    }
-
-    function updateSubCategoryDropdown() {
-        const mainVal = document.getElementById("uploadMainCategory").value;
-        const subDropdown = document.getElementById("uploadSubCategory");
-        subDropdown.innerHTML = "";
-        structure[mainVal].forEach(subCat => {
-            subDropdown.innerHTML += `<option value="${subCat}">${subCat}</option>`;
-        });
-    }
-
-    function generateSubTabs() {
-        const tabsContainer = document.getElementById("subTabsContainer");
-        tabsContainer.innerHTML = "";
-        let allActive = currentSubCategory === "All" ? "active" : "";
-        tabsContainer.innerHTML += `<button class="tab ${allActive}" onclick="filterSubCategory('All')">All Collection</button>`;
-        structure[currentMainCategory].forEach(subCat => {
-            let activeClass = currentSubCategory === subCat ? "active" : "";
-            tabsContainer.innerHTML += `<button class="tab ${activeClass}" onclick="filterSubCategory('${subCat}')">${subCat}</button>`;
-        });
-    }
-
-    function filterSubCategory(subCat) {
-        currentSubCategory = subCat;
-        generateSubTabs();
-        renderProducts(); 
-    }
-
-    function renderProducts() {
-        const grid = document.getElementById("productGrid");
-        grid.innerHTML = "";
-        let filtered = dataset.filter(item => item.main === currentMainCategory);
-        if (currentSubCategory !== "All") filtered = filtered.filter(item => item.sub === currentSubCategory);
-
-        if(filtered.length === 0) {
-            grid.innerHTML = `<div class="no-items">No tailored styles found in this subcategory yet.</div>`;
-            return;
-        }
-
-        filtered.forEach(item => {
-            let showDeleteStyle = isMerchantModeActive ? "display: block;" : "display: none;";
-            
-            grid.innerHTML += `
-                <div class="card">
-                    <button class="merchant-delete-badge" style="${showDeleteStyle}" onclick="removeProductFromWebsite(${item.id})">Delete Item 🗑️</button>
-                    <div class="image-container"><img src="${item.img}" alt="${item.name}"></div>
-                    <div class="card-content">
-                        <h3>${item.name}</h3>
-                        <p class="price">₹${item.price.toLocaleString('en-IN')}</p>
-                        
-                        <div class="qty-selector">
-                            <button class="qty-btn" onclick="changeProductCardQty(${item.id}, -1)">-</button>
-                            <span class="qty-val" id="card-qty-${item.id}">1</span>
-                            <button class="qty-btn" onclick="changeProductCardQty(${item.id}, 1)">+</button>
-                        </div>
-
-                        <button class="btn-add-cart" onclick="addProductToCart(${item.id})">Add To Cart</button>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    function changeProductCardQty(itemId, direction) {
-        const el = document.getElementById(`card-qty-${itemId}`);
-        if (!el) return;
-        let currentQty = parseInt(el.innerText);
-        currentQty += direction;
-        if(currentQty < 1) currentQty = 1;
-        el.innerText = currentQty;
-    }
-
-    function addProductToCart(itemId) {
-        const product = dataset.find(i => i.id === itemId);
-        const qtyElement = document.getElementById(`card-qty-${itemId}`);
-        if (!qtyElement || !product) return;
-        const quantityToAdd = parseInt(qtyElement.innerText);
-
-        const existingIndex = cart.findIndex(item => item.product.id === itemId);
-        if(existingIndex > -1) {
-            cart[existingIndex].quantity += quantityToAdd;
-        } else {
-            cart.push({ product: product, quantity: quantityToAdd });
-        }
-
-        qtyElement.innerText = "1";
-        updateCart();
-    }
-
-    function changeCartItemQty(itemId, direction) {
-        const itemIndex = cart.findIndex(item => item.product.id === itemId);
-        if (itemIndex === -1) return;
-
-        cart[itemIndex].quantity += direction;
-        if (cart[itemIndex].quantity < 1) {
-            removeCartItemRow(itemId);
-        } else {
-            updateCart();
-        }
-    }
-
-    function removeCartItemRow(itemId) {
-        cart = cart.filter(item => item.product.id !== itemId);
-        updateCart();
-    }
-
-    function selectPayment(mode) {
-        selectedPaymentMode = mode;
-        document.getElementById("payUPI").classList.toggle("selected", mode === "UPI");
-        document.getElementById("payCOD").classList.toggle("selected", mode === "COD");
-    }
+        { id: 5, main: "kids", sub: "Party Wear", name: "Kids Premium Sparkle Gown", price: 999, img: "https://images.unsplash.com/photo-1603252109303-2751441dd15
